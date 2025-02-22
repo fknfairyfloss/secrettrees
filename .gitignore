@@ -1,0 +1,1 @@
+.env\n.env.*\n!.env.example\nnode_modules/\n.npm\n.yarn\n.idea/\n.vscode/\n*.swp\n*.swo\ndist/\nbuild/\n.next/\nout/\n*.log\nnpm-debug.log*\nyarn-debug.log*\nyarn-error.log*\n.DS_Store\nThumbs.db\n/private/*\n!/private/.gitkeep\n/config/*\n!/config/.gitkeep\n!/config/example.config.js\n*.bak\n*.backup\n.platform-backups/\n.local/
