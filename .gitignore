@@ -1,0 +1,19 @@
+# Dependencies
+node_modules/
+.env*
+
+# Build
+/build
+/dist
+
+# IDE
+.idea/
+.vscode/
+
+# Private
+private/
+*.key
+*.pem
+
+# Logs
+*.log
