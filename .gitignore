@@ -81,3 +81,4 @@ secret-trees/notion/config/*Config.ts
 shared/config/contracts.ts
 .specstory/
 diagrams/project-overview/
+.github/profile/private/
