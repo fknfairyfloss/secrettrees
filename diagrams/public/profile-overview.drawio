@@ -1,0 +1,26 @@
+<mxfile host="65bd71144e">
+    <diagram id="profile-overview" name="Page-1">
+        <mxGraphModel dx="1459" dy="676" grid="0" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="0" pageScale="1" pageWidth="1169" pageHeight="827" background="light-dark(#1E1E1E,#1A1A1A)" math="0" shadow="0">
+            <root>
+                <mxCell id="0"/>
+                <mxCell id="1" parent="0"/>
+                <mxCell id="profile" value="🧚‍♀️ FairyFloss" style="swimlane;whiteSpace=wrap;html=1;fillColor=#6d8764;startSize=40;rounded=1;fontColor=#ffffff;">
+                    <mxGeometry x="320" y="180" width="200" height="300" as="geometry"/>
+                </mxCell>
+
+                <mxCell id="mainFocus" value="🎯 Primary Focus" parent="profile">
+                    <mxGeometry x="10" y="50" width="180" height="30" as="geometry"/>
+                    <mxCell value="⚡ SecretTrees Development" />
+                    <mxCell value="🔒 Privacy-First Approach" />
+                    <mxCell value="🤖 Automation Tools" />
+                </mxCell>
+
+                <mxCell id="techStack" value="🛠️ Tech Stack">
+                    <mxCell value="⚛️ React + TypeScript" />
+                    <mxCell value="🎨 Framer Motion" />
+                    <mxCell value="🔄 Node.js Automation" />
+                </mxCell>
+            </root>
+        </mxGraphModel>
+    </diagram>
+</mxfile> 
