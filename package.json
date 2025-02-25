@@ -9,7 +9,7 @@
         "sync:watch": "nodemon FairyFloss/notion/examples/syncComponentAnalysis.js",
         "validate:env": "node src/scripts/validateEnv.js",
         "setup": "npm install && npm run validate:env && npm run test:all",
-        "monitor": "node FairyFloss/notion/examples/monitorNotion.js",
+        "monitor": "node scripts/monitor-changes.js",
         "monitor:background": "pm2 start FairyFloss/notion/examples/monitorNotion.js",
         "pipeline": "ts-node FairyFloss/notion/examples/runAnalysisPipeline.ts",
         "pipeline:watch": "nodemon FairyFloss/notion/examples/runAnalysisPipeline.ts",
@@ -32,16 +32,20 @@
         "setup:workspace": "./setup-workspace.sh",
         "test:private": "node scripts/check-private.js",
         "test:changes": "node scripts/track-changes.js",
-        "test:graph": "node scripts/update-graph.js"
+        "test:graph": "node scripts/update-graph.js",
+        "watch": "concurrently \"npm run monitor\" \"npm run visualize\""
     },
     "dependencies": {
         "@notionhq/client": "^1.0.4",
         "@octokit/rest": "^21.1.1",
+        "chalk": "^4.1.2",
+        "chokidar": "^4.0.3",
         "dotenv": "^16.0.0",
         "mermaid": "^11.4.1",
-        "chalk": "^4.1.2"
+        "node-notifier": "^10.0.1"
     },
     "devDependencies": {
+        "concurrently": "^8.2.2",
         "nodemon": "^3.1.9"
     }
 }

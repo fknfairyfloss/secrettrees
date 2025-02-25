@@ -1,6 +1,6 @@
 <mxfile host="65bd71144e">
     <diagram id="prtHgNgQTEPvFCAcTncT" name="Page-1">
-        <mxGraphModel dx="1459" dy="676" grid="0" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="0" pageScale="1" pageWidth="1169" pageHeight="827" background="light-dark(#1E1E1E,#1A1A1A)" math="0" shadow="0">
+        <mxGraphModel dx="2131" dy="1351" grid="0" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="0" pageScale="1" pageWidth="1169" pageHeight="827" background="light-dark(#1E1E1E,#1A1A1A)" math="0" shadow="0">
             <root>
                 <mxCell id="0"/>
                 <mxCell id="1" parent="0"/>
@@ -163,7 +163,7 @@
                 <mxCell id="flow3" value="3. 📊 Update Visuals" style="text;strokeColor=default;fillColor=#76608a;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;rounded=1;fontColor=#ffffff;arcSize=8;" vertex="1" parent="automationFlow">
                     <mxGeometry x="10" y="130" width="180" height="30" as="geometry"/>
                 </mxCell>
-                <mxCell id="flow4" value="4. �� Run Tests" style="text;strokeColor=default;fillColor=#76608a;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;rounded=1;fontColor=#ffffff;arcSize=8;" vertex="1" parent="automationFlow">
+                <mxCell id="flow4" value="4. 🔄 Run Tests" style="text;strokeColor=default;fillColor=#76608a;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;rounded=1;fontColor=#ffffff;arcSize=8;" vertex="1" parent="automationFlow">
                     <mxGeometry x="10" y="170" width="180" height="30" as="geometry"/>
                 </mxCell>
                 <mxCell id="flow5" value="5. 📝 Update Docs" style="text;strokeColor=default;fillColor=#76608a;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;rounded=1;fontColor=#ffffff;arcSize=8;" vertex="1" parent="automationFlow">
@@ -171,6 +171,9 @@
                 </mxCell>
                 <mxCell id="flow6" value="6. 🔄 Commit Changes" style="text;strokeColor=default;fillColor=#76608a;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;rounded=1;fontColor=#ffffff;arcSize=8;" vertex="1" parent="automationFlow">
                     <mxGeometry x="10" y="250" width="180" height="30" as="geometry"/>
+                </mxCell>
+                <mxCell id="changeTracker" value="🔄 Live Changes" style="swimlane;whiteSpace=wrap;html=1;fillColor=#647687;strokeColor=default;startSize=40;rounded=1;fontColor=#ffffff;arcSize=8;" vertex="1" parent="1">
+                    <mxGeometry x="440" y="280" width="200" height="200" as="geometry"/>
                 </mxCell>
             </root>
         </mxGraphModel>
