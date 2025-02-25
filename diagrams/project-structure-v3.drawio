@@ -1,6 +1,6 @@
 <mxfile host="65bd71144e">
     <diagram id="prtHgNgQTEPvFCAcTncT" name="Page-1">
-        <mxGraphModel dx="2157" dy="631" grid="0" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1169" pageHeight="827" background="light-dark(#1E1E1E,#1A1A1A)" math="0" shadow="0">
+        <mxGraphModel dx="1459" dy="676" grid="0" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="0" pageScale="1" pageWidth="1169" pageHeight="827" background="light-dark(#1E1E1E,#1A1A1A)" math="0" shadow="0">
             <root>
                 <mxCell id="0"/>
                 <mxCell id="1" parent="0"/>
@@ -59,7 +59,7 @@
                     <mxGeometry x="10" y="91" width="130" height="30" as="geometry"/>
                 </mxCell>
                 <mxCell id="19" value="🔄 Project Status" style="swimlane;whiteSpace=wrap;html=1;fillColor=#647687;strokeColor=default;startSize=40;rounded=1;fontColor=#ffffff;arcSize=8;" parent="1" vertex="1">
-                    <mxGeometry x="503" y="512" width="200" height="200" as="geometry"/>
+                    <mxGeometry x="440" y="504" width="200" height="200" as="geometry"/>
                 </mxCell>
                 <mxCell id="20" value="🟢 MVP Progress (65%)" style="text;strokeColor=default;fillColor=#647687;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;rounded=1;fontColor=#ffffff;arcSize=8;" parent="19" vertex="1">
                     <mxGeometry x="10" y="50" width="180" height="30" as="geometry"/>
@@ -86,7 +86,7 @@
                     <mxGeometry x="10" y="94" width="130" height="30" as="geometry"/>
                 </mxCell>
                 <mxCell id="26" value="🌐 Social Integration" style="swimlane;whiteSpace=wrap;html=1;fillColor=#647687;strokeColor=default;startSize=40;rounded=1;fontColor=#ffffff;arcSize=8;" parent="1" vertex="1">
-                    <mxGeometry x="687" y="340" width="180" height="140" as="geometry"/>
+                    <mxGeometry x="663" y="277" width="180" height="140" as="geometry"/>
                 </mxCell>
                 <mxCell id="27" value="🤖 Discord Bot (-)" style="text;strokeColor=default;fillColor=#647687;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;rounded=1;fontColor=#ffffff;arcSize=8;" parent="26" vertex="1">
                     <mxGeometry x="10" y="50" width="160" height="30" as="geometry"/>

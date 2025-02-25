@@ -46,12 +46,14 @@ node_modules/
 !/config/example.config.js
 
 # Private Diagrams and Documentation
-diagrams/*-private.drawio
-secrettrees/diagrams/secrettrees-mindmap.drawio
-secrettrees-private/diagrams/*.drawio
-diagrams/private/
-docs/private/
-docs/**/*-private.md
+diagrams/private/*
+!diagrams/private/.gitkeep
+diagrams/personal/*
+!diagrams/personal/.gitkeep
+diagrams/public/personal/*
+!diagrams/public/personal/.gitkeep
+secrettrees/diagrams/personal-dev/*
+!secrettrees/diagrams/personal-dev/.gitkeep
 
 # Personal Workspace Settings
 .vscode/private/
