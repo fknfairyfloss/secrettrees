@@ -5,14 +5,21 @@ const path = require('path');
 function visualizeProject() {
     const structure = {
         public: {
-            diagrams: ['project-structure.drawio'],
-            docs: ['STRUCTURE.md'],
-            setup: ['setup-workspace.sh'],
+            diagrams: [
+                'project-structure.drawio',
+                'templates/base-template.drawio'
+            ],
+            docs: [
+                'STRUCTURE.md',
+                'ACCESS_GUIDE.md',
+                'PLATFORM_GUIDE.md'
+            ],
             scripts: [
                 'check-private.js',
                 'track-changes.js',
                 'update-graph.js',
-                'visualizeProject.js'
+                'visualizeProject.js',
+                'live-preview.sh'
             ]
         },
         private: {

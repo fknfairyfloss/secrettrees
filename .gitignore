@@ -46,7 +46,6 @@ node_modules/
 !/config/example.config.js
 
 # Private Diagrams and Documentation
-diagrams/project-structure-v3.drawio
 diagrams/*-private.drawio
 secrettrees/diagrams/secrettrees-mindmap.drawio
 secrettrees-private/diagrams/*.drawio
@@ -78,3 +77,5 @@ personal/
 secret-trees/private/
 secret-trees/notion/config/*Config.ts
 shared/config/contracts.ts
+.specstory/
+diagrams/project-overview/

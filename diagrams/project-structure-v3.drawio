@@ -1,0 +1,130 @@
+<mxfile host="65bd71144e">
+    <diagram id="prtHgNgQTEPvFCAcTncT" name="Page-1">
+        <mxGraphModel dx="1787" dy="508" grid="0" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1169" pageHeight="827" background="light-dark(#1E1E1E,#1A1A1A)" math="0" shadow="0">
+            <root>
+                <mxCell id="0"/>
+                <mxCell id="1" parent="0"/>
+                <mxCell id="2" value="FairyFloss" style="ellipse;whiteSpace=wrap;html=1;fillColor=#6d8764;strokeColor=default;fontSize=16;fontStyle=1;rounded=1;fontColor=#ffffff;shadow=0;" parent="1" vertex="1">
+                    <mxGeometry x="320" y="180" width="120" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="3" value="SecretTrees&#xa;(Setup Complete)" style="swimlane;whiteSpace=wrap;html=1;fillColor=#76608a;strokeColor=default;startSize=40;rounded=1;fontColor=#ffffff;arcSize=8;" parent="1" vertex="1">
+                    <mxGeometry x="120" y="301" width="200" height="200" as="geometry"/>
+                </mxCell>
+                <mxCell id="5" value="📄 package.json (New)" style="text;strokeColor=default;fillColor=#76608a;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;rounded=1;fontColor=#ffffff;arcSize=8;" parent="3" vertex="1">
+                    <mxGeometry x="10" y="52" width="180" height="30" as="geometry"/>
+                </mxCell>
+                <mxCell id="6" value="+ tsconfig.json (New)" style="text;strokeColor=default;fillColor=#76608a;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;rounded=1;fontColor=#ffffff;arcSize=8;" parent="3" vertex="1">
+                    <mxGeometry x="10" y="92" width="180" height="30" as="geometry"/>
+                </mxCell>
+                <mxCell id="7" value="+ React Setup (New)" style="text;strokeColor=default;fillColor=#76608a;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;rounded=1;fontColor=#ffffff;arcSize=8;" parent="3" vertex="1">
+                    <mxGeometry x="10" y="132" width="180" height="30" as="geometry"/>
+                </mxCell>
+                <mxCell id="4" value="Integration Tools&#xa;(New Setup)" style="swimlane;whiteSpace=wrap;html=1;fillColor=#647687;strokeColor=default;startSize=40;rounded=1;fontColor=#ffffff;arcSize=8;" parent="1" vertex="1">
+                    <mxGeometry x="440" y="280" width="200" height="200" as="geometry"/>
+                </mxCell>
+                <mxCell id="8" value="⚙️ Environment Setup" style="text;strokeColor=default;fillColor=#647687;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;rounded=1;fontColor=#ffffff;arcSize=8;" parent="4" vertex="1">
+                    <mxGeometry x="10" y="58" width="180" height="30" as="geometry"/>
+                </mxCell>
+                <mxCell id="9" value="+ .env.linux (New)" style="text;strokeColor=default;fillColor=#647687;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;rounded=1;fontColor=#ffffff;arcSize=8;" parent="4" vertex="1">
+                    <mxGeometry x="10" y="98" width="180" height="30" as="geometry"/>
+                </mxCell>
+                <mxCell id="10" value="+ .env.windows (New)" style="text;strokeColor=default;fillColor=#647687;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;rounded=1;fontColor=#ffffff;arcSize=8;" parent="4" vertex="1">
+                    <mxGeometry x="10" y="138" width="180" height="30" as="geometry"/>
+                </mxCell>
+                <mxCell id="13" value="Documentation&#xa;(New Structure)" style="swimlane;whiteSpace=wrap;html=1;fillColor=#76608a;strokeColor=default;startSize=40;rounded=1;fontColor=#ffffff;arcSize=8;" parent="1" vertex="1">
+                    <mxGeometry x="125" y="537" width="200" height="160" as="geometry"/>
+                </mxCell>
+                <mxCell id="14" value="✅ 📚 STRUCTURE.md" style="text;strokeColor=default;fillColor=#76608a;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;rounded=1;fontColor=#ffffff;arcSize=8;" parent="13" vertex="1">
+                    <mxGeometry x="10" y="51" width="180" height="30" as="geometry"/>
+                </mxCell>
+                <mxCell id="15" value="✅ + .gitignore Updates" style="text;strokeColor=default;fillColor=#76608a;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;rounded=1;fontColor=#ffffff;arcSize=8;" parent="13" vertex="1">
+                    <mxGeometry x="10" y="91" width="180" height="30" as="geometry"/>
+                </mxCell>
+                <mxCell id="11" style="endArrow=none;html=1;strokeColor=#76608a;strokeWidth=2;rounded=1;arcSize=8;" parent="1" source="2" target="3" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="12" style="endArrow=none;html=1;strokeColor=#647687;strokeWidth=2;rounded=1;arcSize=8;" parent="1" source="2" target="4" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="16" style="endArrow=none;html=1;strokeColor=#76608a;strokeWidth=2;rounded=1;arcSize=8;" parent="1" source="2" target="13" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="17" value="🌳 Personal Projects" style="swimlane;whiteSpace=wrap;html=1;fillColor=#b46cbd;strokeColor=default;startSize=40;rounded=1;fontColor=#ffffff;arcSize=8;" parent="1" vertex="1">
+                    <mxGeometry x="-114" y="574" width="150" height="160" as="geometry"/>
+                </mxCell>
+                <mxCell id="18" value="📦 Private Packages" style="text;strokeColor=default;fillColor=#b46cbd;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;rounded=1;fontColor=#ffffff;arcSize=8;" parent="17" vertex="1">
+                    <mxGeometry x="10" y="51" width="130" height="30" as="geometry"/>
+                </mxCell>
+                <mxCell id="21" value="🔒 Local Settings" style="text;strokeColor=default;fillColor=#b46cbd;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;rounded=1;fontColor=#ffffff;arcSize=8;" parent="17" vertex="1">
+                    <mxGeometry x="10" y="91" width="130" height="30" as="geometry"/>
+                </mxCell>
+                <mxCell id="19" value="🔄 Project Status" style="swimlane;whiteSpace=wrap;html=1;fillColor=#647687;strokeColor=default;startSize=40;rounded=1;fontColor=#ffffff;arcSize=8;" parent="1" vertex="1">
+                    <mxGeometry x="503" y="512" width="200" height="200" as="geometry"/>
+                </mxCell>
+                <mxCell id="20" value="🟢 MVP Progress (65%)" style="text;strokeColor=default;fillColor=#647687;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;rounded=1;fontColor=#ffffff;arcSize=8;" parent="19" vertex="1">
+                    <mxGeometry x="10" y="50" width="180" height="30" as="geometry"/>
+                </mxCell>
+                <mxCell id="22" value="🟡 Integration (45%)" style="text;strokeColor=default;fillColor=#647687;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;rounded=1;fontColor=#ffffff;arcSize=8;" parent="19" vertex="1">
+                    <mxGeometry x="10" y="90" width="180" height="30" as="geometry"/>
+                </mxCell>
+                <mxCell id="23" value="🟢 MVP Components" style="swimlane;whiteSpace=wrap;html=1;fillColor=#76608a;strokeColor=default;startSize=40;rounded=1;fontColor=#ffffff;arcSize=8;" parent="1" vertex="1">
+                    <mxGeometry x="137" y="740" width="180" height="164" as="geometry"/>
+                </mxCell>
+                <mxCell id="24" value="🔥 Framer Custom (+5)" style="text;strokeColor=default;fillColor=#76608a;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;rounded=1;fontColor=#ffffff;arcSize=8;" parent="23" vertex="1">
+                    <mxGeometry x="10" y="50" width="160" height="30" as="geometry"/>
+                </mxCell>
+                <mxCell id="25" value="⚛️ React Core (+3)" style="text;strokeColor=default;fillColor=#76608a;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;rounded=1;fontColor=#ffffff;arcSize=8;" parent="23" vertex="1">
+                    <mxGeometry x="10" y="90" width="160" height="30" as="geometry"/>
+                </mxCell>
+                <mxCell id="29" value="🛠️ Development Tools" style="swimlane;whiteSpace=wrap;html=1;fillColor=#b46cbd;strokeColor=default;startSize=40;rounded=1;fontColor=#ffffff;arcSize=8;" parent="1" vertex="1">
+                    <mxGeometry x="-322" y="765" width="151" height="200" as="geometry"/>
+                </mxCell>
+                <mxCell id="30" value="⚡ Framer (+2)" style="text;strokeColor=default;fillColor=#b46cbd;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;rounded=1;fontColor=#ffffff;arcSize=8;" parent="29" vertex="1">
+                    <mxGeometry x="10" y="54" width="130" height="30" as="geometry"/>
+                </mxCell>
+                <mxCell id="31" value="🎨 Components" style="text;strokeColor=default;fillColor=#b46cbd;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;rounded=1;fontColor=#ffffff;arcSize=8;" parent="29" vertex="1">
+                    <mxGeometry x="10" y="94" width="130" height="30" as="geometry"/>
+                </mxCell>
+                <mxCell id="26" value="🌐 Social Integration" style="swimlane;whiteSpace=wrap;html=1;fillColor=#647687;strokeColor=default;startSize=40;rounded=1;fontColor=#ffffff;arcSize=8;" parent="1" vertex="1">
+                    <mxGeometry x="687" y="340" width="180" height="140" as="geometry"/>
+                </mxCell>
+                <mxCell id="27" value="🤖 Discord Bot (-)" style="text;strokeColor=default;fillColor=#647687;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;rounded=1;fontColor=#ffffff;arcSize=8;" parent="26" vertex="1">
+                    <mxGeometry x="10" y="50" width="160" height="30" as="geometry"/>
+                </mxCell>
+                <mxCell id="28" value="📝 Notion Sync (-)" style="text;strokeColor=default;fillColor=#647687;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;rounded=1;fontColor=#ffffff;arcSize=8;" parent="26" vertex="1">
+                    <mxGeometry x="10" y="90" width="160" height="30" as="geometry"/>
+                </mxCell>
+                <mxCell id="32" value="🔒 Private Workflow" style="swimlane;whiteSpace=wrap;html=1;fillColor=#b46cbd;strokeColor=default;startSize=40;rounded=1;fontColor=#ffffff;arcSize=8;" parent="1" vertex="1">
+                    <mxGeometry x="-139" y="374" width="200" height="160" as="geometry"/>
+                </mxCell>
+                <mxCell id="33" value="📊 Review Process" style="text;strokeColor=default;fillColor=#b46cbd;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;rounded=1;fontColor=#ffffff;arcSize=8;" parent="32" vertex="1">
+                    <mxGeometry x="10" y="50" width="180" height="30" as="geometry"/>
+                </mxCell>
+                <mxCell id="34" value="🔍 Private Testing" style="text;strokeColor=default;fillColor=#b46cbd;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;rounded=1;fontColor=#ffffff;arcSize=8;" parent="32" vertex="1">
+                    <mxGeometry x="10" y="90" width="180" height="30" as="geometry"/>
+                </mxCell>
+                <mxCell id="coreScripts" value="🛠️ Core Scripts" style="swimlane;whiteSpace=wrap;html=1;fillColor=#b46cbd;strokeColor=default;startSize=40;rounded=1;fontColor=#ffffff;arcSize=8;" vertex="1" parent="1">
+                    <mxGeometry x="-117" y="765" width="175" height="301" as="geometry"/>
+                </mxCell>
+                <mxCell id="script1" value="✅ 🔍 check-private.js" style="text;strokeColor=default;fillColor=#b46cbd;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;rounded=1;fontColor=#ffffff;arcSize=8;" vertex="1" parent="coreScripts">
+                    <mxGeometry x="12.5" y="53" width="150" height="30" as="geometry"/>
+                </mxCell>
+                <mxCell id="script2" value="✅ 🔄 convert-python-files.js" style="text;strokeColor=default;fillColor=#b46cbd;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;rounded=1;fontColor=#ffffff;arcSize=8;" vertex="1" parent="coreScripts">
+                    <mxGeometry x="12.5" y="93" width="150" height="30" as="geometry"/>
+                </mxCell>
+                <mxCell id="script3" value="✅ 🧪 test-all.js" style="text;strokeColor=default;fillColor=#b46cbd;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;rounded=1;fontColor=#ffffff;arcSize=8;" vertex="1" parent="coreScripts">
+                    <mxGeometry x="12.5" y="133" width="150" height="30" as="geometry"/>
+                </mxCell>
+                <mxCell id="script4" value="✅ 📊 track-changes.js" style="text;strokeColor=default;fillColor=#b46cbd;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;rounded=1;fontColor=#ffffff;arcSize=8;" vertex="1" parent="coreScripts">
+                    <mxGeometry x="12.5" y="173" width="150" height="30" as="geometry"/>
+                </mxCell>
+                <mxCell id="script5" value="✅ 🎨 visual-diff.js" style="text;strokeColor=default;fillColor=#b46cbd;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;rounded=1;fontColor=#ffffff;arcSize=8;" vertex="1" parent="coreScripts">
+                    <mxGeometry x="12.5" y="213" width="150" height="30" as="geometry"/>
+                </mxCell>
+                <mxCell id="script6" value="✅ 📈 visualizeProject.js" style="text;strokeColor=default;fillColor=#b46cbd;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;rounded=1;fontColor=#ffffff;arcSize=8;" vertex="1" parent="coreScripts">
+                    <mxGeometry x="12.5" y="253" width="150" height="30" as="geometry"/>
+                </mxCell>
+            </root>
+        </mxGraphModel>
+    </diagram>
+</mxfile>
