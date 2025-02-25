@@ -4,21 +4,28 @@
             <root>
                 <mxCell id="0"/>
                 <mxCell id="1" parent="0"/>
-                <mxCell id="profile" value="🧚‍♀️ FairyFloss" style="swimlane;whiteSpace=wrap;html=1;fillColor=#6d8764;startSize=40;rounded=1;fontColor=#ffffff;">
+                <mxCell id="profile" value="🧚‍♀️ FairyFloss" style="swimlane;whiteSpace=wrap;html=1;fillColor=#6d8764;startSize=40;rounded=1;fontColor=#ffffff;arcSize=8;" vertex="1" parent="1">
                     <mxGeometry x="320" y="180" width="200" height="300" as="geometry"/>
                 </mxCell>
 
-                <mxCell id="mainFocus" value="🎯 Primary Focus" parent="profile">
+                <mxCell id="mainFocus" value="🎯 Primary Focus" style="text;strokeColor=default;fillColor=#6d8764;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;rounded=1;fontColor=#ffffff;arcSize=8;" vertex="1" parent="profile">
                     <mxGeometry x="10" y="50" width="180" height="30" as="geometry"/>
-                    <mxCell value="⚡ SecretTrees Development" />
-                    <mxCell value="🔒 Privacy-First Approach" />
-                    <mxCell value="🤖 Automation Tools" />
                 </mxCell>
 
-                <mxCell id="techStack" value="🛠️ Tech Stack">
-                    <mxCell value="⚛️ React + TypeScript" />
-                    <mxCell value="🎨 Framer Motion" />
-                    <mxCell value="🔄 Node.js Automation" />
+                <mxCell id="focus1" value="⚡ SecretTrees Development" style="text;strokeColor=default;fillColor=#6d8764;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;rounded=1;fontColor=#ffffff;arcSize=8;" vertex="1" parent="profile">
+                    <mxGeometry x="10" y="90" width="180" height="30" as="geometry"/>
+                </mxCell>
+
+                <mxCell id="focus2" value="🔒 Privacy-First Approach" style="text;strokeColor=default;fillColor=#6d8764;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;rounded=1;fontColor=#ffffff;arcSize=8;" vertex="1" parent="profile">
+                    <mxGeometry x="10" y="130" width="180" height="30" as="geometry"/>
+                </mxCell>
+
+                <mxCell id="focus3" value="🤖 Automation Tools" style="text;strokeColor=default;fillColor=#6d8764;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;rounded=1;fontColor=#ffffff;arcSize=8;" vertex="1" parent="profile">
+                    <mxGeometry x="10" y="170" width="180" height="30" as="geometry"/>
+                </mxCell>
+
+                <mxCell id="techStack" value="🛠️ Tech Stack" style="text;strokeColor=default;fillColor=#6d8764;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;rounded=1;fontColor=#ffffff;arcSize=8;" vertex="1" parent="profile">
+                    <mxGeometry x="10" y="210" width="180" height="30" as="geometry"/>
                 </mxCell>
             </root>
         </mxGraphModel>

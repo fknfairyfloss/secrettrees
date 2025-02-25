@@ -24,4 +24,22 @@
 
 ### 📊 Stats
 
-![FairyFloss's GitHub stats](https://github-readme-stats.vercel.app/api?username=fknfairyfloss&show_icons=true&theme=dark) 
+![FairyFloss's GitHub stats](https://github-readme-stats.vercel.app/api?username=fknfairyfloss&show_icons=true&theme=dark)
+
+# Development Setup
+```bash
+# Initialize workspace
+./scripts/verify-setup.sh
+```
+
+### 🔍 Project Structure 
+
+### 🛠️ Development
+
+```bash
+# Setup workspace
+npm run setup
+
+# Verify structure
+npm run verify
+```

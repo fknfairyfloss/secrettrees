@@ -81,4 +81,15 @@ secret-trees/notion/config/*Config.ts
 shared/config/contracts.ts
 .specstory/
 diagrams/project-overview/
-.github/profile/private/
+.github/private/
+
+# Development paths
+**/Work Station/*
+**/Local Disk/*
+**/.local/*
+**/media/ff/*
+
+# Private setup
+**/setup-private/*
+**/config-private/*
+verify-private.sh
