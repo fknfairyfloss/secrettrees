@@ -1,1 +1,80 @@
-.env\n.env.*\n!.env.example\nnode_modules/\n.npm\n.yarn\n.idea/\n.vscode/\n*.swp\n*.swo\ndist/\nbuild/\n.next/\nout/\n*.log\nnpm-debug.log*\nyarn-debug.log*\nyarn-error.log*\n.DS_Store\nThumbs.db\n/private/*\n!/private/.gitkeep\n/config/*\n!/config/.gitkeep\n!/config/example.config.js\n*.bak\n*.backup\n.platform-backups/\n.local/
+# Logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Environment files
+.env
+.env.*
+!.env.example
+
+# IDE and system files
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+*.swp
+*.swo
+
+# Build and output
+dist/
+build/
+.next/
+out/
+
+# Dependencies
+node_modules/
+.npm
+.yarn
+
+# Draw.io files
+*.drawio.bkp
+*.drawio.dtmp
+
+# Backup files
+*.bak
+*.backup
+.platform-backups/
+.local/
+
+# Private and config
+/private/*
+!/private/.gitkeep
+/config/*
+!/config/.gitkeep
+!/config/example.config.js
+
+# Private Diagrams and Documentation
+diagrams/project-structure-v3.drawio
+diagrams/*-private.drawio
+secrettrees/diagrams/secrettrees-mindmap.drawio
+secrettrees-private/diagrams/*.drawio
+diagrams/private/
+docs/private/
+docs/**/*-private.md
+
+# Personal Workspace Settings
+.vscode/private/
+.cursor/private/
+.env.*
+**/local.settings.json
+
+# Private Package Files
+**/private.package.json
+**/package.private.json
+
+# Test files
+scripts/*.test.log
+scripts/*.backup
+test-results/
+# Python files in node_modules
+node_modules/**/*.py
+
+# Private content
+secrettrees-private/
+personal/
+.private-files
+secret-trees/private/
+secret-trees/notion/config/*Config.ts
+shared/config/contracts.ts

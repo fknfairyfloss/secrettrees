@@ -1,0 +1,1 @@
+# Platform-Specific Guidelines\n\n## Windows\n- Use Draw.io Desktop or VS Code extension\n- Save in 'windows' directory\n\n## Linux\n- Use VS Code extension\n- Save in 'linux' directory\n\n## Web\n- Use app.diagrams.net\n- Save in 'web' directory\n\nAll directories sync to GitHub!

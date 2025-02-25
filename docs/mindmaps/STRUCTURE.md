@@ -1,0 +1,16 @@
+mindmap
+    root((FairyFloss))
+        SecretTrees
+            Private
+                Staking
+                Security
+            Public
+                Components
+                Documentation
+            Integration
+                Tools
+                    VSCode
+                    GitHub
+                Communication
+                    Discord
+                    Notion 

@@ -1,0 +1,47 @@
+{
+    "name": "fairyfloss",
+    "version": "1.0.0",
+    "description": "FairyFloss Notion Integration",
+    "scripts": {
+        "start": "node FairyFloss/notion/examples/usage.js",
+        "sync": "node FairyFloss/notion/examples/syncComponentAnalysis.js",
+        "test:connection": "node FairyFloss/notion/examples/usage.js",
+        "sync:watch": "nodemon FairyFloss/notion/examples/syncComponentAnalysis.js",
+        "validate:env": "node src/scripts/validateEnv.js",
+        "setup": "npm install && npm run validate:env && npm run test:all",
+        "monitor": "node FairyFloss/notion/examples/monitorNotion.js",
+        "monitor:background": "pm2 start FairyFloss/notion/examples/monitorNotion.js",
+        "pipeline": "ts-node FairyFloss/notion/examples/runAnalysisPipeline.ts",
+        "pipeline:watch": "nodemon FairyFloss/notion/examples/runAnalysisPipeline.ts",
+        "retry-failed": "ts-node FairyFloss/notion/examples/retryFailedSync.ts",
+        "sync:private": "ts-node src/notion/examples/syncPrivateGit.ts",
+        "test:all": "ts-node src/notion/examples/testConnections.ts",
+        "setup:env": "ts-node scripts/setupEnvironment.ts",
+        "switch:windows": "./scripts/switch-platform.sh windows && npm run setup:env",
+        "switch:linux": "./scripts/switch-platform.sh linux && npm run setup:env",
+        "validate:all": "npm run validate:env && npm run test:all",
+        "switch:backup": "ts-node scripts/switchPlatformWithBackup.ts",
+        "backup:create": "ts-node -e \"require('./utils/backupUtils').BackupUtils.createBackup(process.argv[1])\"",
+        "backup:restore": "ts-node -e \"require('./utils/backupUtils').BackupUtils.restoreBackup(process.argv[1])\"",
+        "backup:list": "ts-node -e \"console.log(require('./utils/backupUtils').BackupUtils.listBackups())\"",
+        "visualize": "node scripts/visualizeProject.js",
+        "visualize:watch": "nodemon scripts/visualizeProject.ts",
+        "track:component": "ts-node -e \"require('./services/VisualDevTracker').updateDevStatus(process.argv[1], process.argv[2], process.argv[3])\"",
+        "visualize:diagram": "ts-node scripts/updateVisualizations.ts",
+        "visualize:github": "ts-node -e \"require('./services/GitHubStructureAnalyzer').analyzeRepository('fknfairyfloss', 'GitPriv')\"",
+        "setup:workspace": "./setup-workspace.sh",
+        "test:private": "node scripts/check-private.js",
+        "test:changes": "node scripts/track-changes.js",
+        "test:graph": "node scripts/update-graph.js"
+    },
+    "dependencies": {
+        "@notionhq/client": "^1.0.4",
+        "@octokit/rest": "^21.1.1",
+        "dotenv": "^16.0.0",
+        "mermaid": "^11.4.1",
+        "chalk": "^4.1.2"
+    },
+    "devDependencies": {
+        "nodemon": "^3.1.9"
+    }
+}
