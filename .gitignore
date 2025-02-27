@@ -1,26 +1,81 @@
 # Dependencies
 node_modules/
 package-lock.json
+.npm
+.yarn
 
 # Environment
 .env
 .env.*
 !.env.example
+.env.builder
+.env.*.private
 
-# Build
-build/
+# Build and output
 dist/
+build/
+.next/
+out/
 
-# IDE
+# IDE and system files
 .vscode/
 .idea/
-
-# Logs
-*.log
-npm-debug.log*
-
-# OS
 .DS_Store
 Thumbs.db
+*.swp
+*.swo
+.vscode/private/
+.cursor/private/
+**/local.settings.json
 
-# Environment files 
+# Logs and tests
+*.log
+npm-debug.log*
+scripts/*.test.log
+scripts/*.backup
+test-results/
+
+# Draw.io files
+*.drawio.bkp
+*.drawio.dtmp
+
+# Backup files
+*.bak
+*.backup
+.platform-backups/
+.local/
+
+# Private content
+/private/*
+!/private/.gitkeep
+/config/*
+!/config/.gitkeep
+!/config/example.config.js
+builder.private.config.js
+secrettrees-private/
+personal/
+.private-files
+secret-trees/private/
+.specstory/
+
+# Private Diagrams
+diagrams/private/*
+!diagrams/private/.gitkeep
+diagrams/personal/*
+!diagrams/personal/.gitkeep
+diagrams/public/personal/*
+!diagrams/public/personal/.gitkeep
+diagrams/project-overview/
+secrettrees/diagrams/personal-dev/*
+!secrettrees/diagrams/personal-dev/.gitkeep
+
+# Development paths
+**/Work Station/*
+**/Local Disk/*
+**/.local/*
+**/media/ff/*
+
+# Private setup
+**/setup-private/*
+**/config-private/*
+verify-private.sh 
