@@ -1,0 +1,30 @@
+{
+	"nodes":[
+		{"id":"0e2fc0a08c4968ea","type":"group","x":-640,"y":-380,"width":1280,"height":900},
+		{"id":"db83b6bf86a0dd9a","type":"group","x":-210,"y":-360,"width":420,"height":800},
+		{"id":"de6a442dd2a9a9bb","type":"group","x":-620,"y":-360,"width":380,"height":800},
+		{"id":"7c6e9dc3c7b92a40","type":"group","x":240,"y":-360,"width":380,"height":800},
+		{"id":"daa00de3ecbd6cef","type":"text","text":"# Secret Trees Technical Architecture","x":-240,"y":-540,"width":480,"height":120},
+		{"id":"8b96e31fda0b1d93","type":"text","text":"## Data Collection Layer","x":-620,"y":-360,"width":380,"height":60},
+		{"id":"12d1fbeb6b1b4aa9","type":"text","text":"### Hemp Sensor Node\n- CO₂ Monitoring\n- Soil Moisture\n- Growth Tracking\n- Climate Data","x":-600,"y":-280,"width":340,"height":160},
+		{"id":"9a63c51b3a18f52c","type":"text","text":"### Satellite Imagery\n- Multi-spectral Analysis\n- Change Detection\n- Land Use Verification","x":-600,"y":-100,"width":340,"height":160},
+		{"id":"e34d2193f8fb95a1","type":"text","text":"## Processing Layer","x":-210,"y":-360,"width":420,"height":60},
+		{"id":"5c93c46d5cd89b1e","type":"text","text":"## Data Flow","x":-240,"y":540,"width":480,"height":60},
+		{"id":"20d9a6dc5e4d06c5","type":"text","text":"```mermaid\ngraph TD\n    A[Hemp Sensors] -->|Raw Data| B[Data Lake]\n    C[Satellite] -->|Imagery| B\n    D[Field Teams] -->|Verification Data| B\n    B -->|Processed Data| E[ML/AI System]\n    E -->|Verified Carbon Data| F[Smart Contracts]\n    F -->|Carbon Credits| G[Market/Exchange]\n    F -->|Governance Proposals| H[DAO Voting]\n```","x":-580,"y":620,"width":1160,"height":320},
+		{"id":"8adff08fd1c618cf","type":"text","text":"### Field Verification\n- Sample Collection\n- Ground Truth Data\n- Growth Measurements","x":-600,"y":80,"width":340,"height":140},
+		{"id":"2b0e08fae57e7c29","type":"file","file":"docs/markdown/06-Technical-Platform.md","x":-600,"y":240,"width":340,"height":160},
+		{"id":"50c11c91fbe5cdb2","type":"text","text":"### Data Processing\n- Carbon Sequestration Calculation\n- Verification Algorithms\n- Data Cleaning & Normalization","x":-190,"y":-280,"width":380,"height":160},
+		{"id":"6caad7fc01be09e2","type":"text","text":"### AI & ML Systems\n- Anomaly Detection\n- Prediction Models\n- Pattern Recognition","x":-190,"y":-100,"width":380,"height":160},
+		{"id":"d96ca8ebe48cd13a","type":"text","text":"### API Gateway\n- Authentication\n- Rate Limiting\n- Request Routing","x":-190,"y":80,"width":380,"height":140},
+		{"id":"2e00cdfb6ad0fd25","type":"file","file":"docs/markdown/07-AI-Automation.md","x":-190,"y":240,"width":380,"height":160},
+		{"id":"dea73d10b4e75d4e","type":"text","text":"## Blockchain Layer","x":240,"y":-360,"width":380,"height":60},
+		{"id":"5a0e80b1feaea9e3","type":"text","text":"### Smart Contracts\n- ERC-1155 Tokens\n- Carbon Credit Registry\n- Verification Oracles","x":260,"y":-280,"width":340,"height":160},
+		{"id":"c9b8cd53aaef86d7","type":"text","text":"### DAO Governance\n- Token Holder Voting\n- Protocol Parameter Updates\n- Treasury Management","x":260,"y":-100,"width":340,"height":160},
+		{"id":"6bc5731ef3a0a3c6","type":"text","text":"### User Interfaces\n- Market Dashboard\n- Verification Console\n- Investor Portal","x":260,"y":80,"width":340,"height":140},
+		{"id":"c037b9e2e0452c97","type":"file","file":"docs/markdown/03-Tokenization-Strategy.md","x":260,"y":240,"width":340,"height":160}
+	],
+	"edges":[
+		{"id":"79e5c2ed3e3fc1f1","fromNode":"de6a442dd2a9a9bb","fromSide":"right","toNode":"db83b6bf86a0dd9a","toSide":"left"},
+		{"id":"fd65f93e5d4e7fd2","fromNode":"db83b6bf86a0dd9a","fromSide":"right","toNode":"7c6e9dc3c7b92a40","toSide":"left"}
+	]
+}

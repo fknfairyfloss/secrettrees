@@ -1,0 +1,12 @@
+{
+  "theme": "obsidian",
+  "baseFontSize": 16,
+  "accentColor": "#209945",
+  "cssTheme": "",
+  "translucency": false,
+  "enabledCssSnippets": [],
+  "showViewHeader": true,
+  "nativeMenus": false,
+  "textFontFamily": "-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif",
+  "monospaceFontFamily": "Menlo, SFMono-Regular, Consolas, 'Roboto Mono', monospace"
+} 

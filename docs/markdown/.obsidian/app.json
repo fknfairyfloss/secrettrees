@@ -1,0 +1,18 @@
+{
+  "alwaysUpdateLinks": true,
+  "promptDelete": false,
+  "attachmentFolderPath": "assets",
+  "newFileLocation": "folder",
+  "newFileFolderPath": "",
+  "useMarkdownLinks": false,
+  "showUnsupportedFiles": true,
+  "strictLineBreaks": false,
+  "readableLineLength": true,
+  "showLineNumber": true,
+  "showIndentGuide": true,
+  "foldHeading": true,
+  "foldIndent": true,
+  "defaultViewMode": "source",
+  "showFrontmatter": false,
+  "livePreview": true
+} 
