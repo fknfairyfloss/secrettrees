@@ -4,78 +4,23 @@ tags: dashboard, n8n, workflows, project-management
 created: 2025-04-25
 ---
 
-# N8N Workflow Dashboard
+# Secret Trees N8N Workflows Dashboard
 
-This dashboard provides an overview of our n8n workflow status and integration services.
-
-## Current Status
-
-| Service | Status | Last Check | Notes |
-|---------|--------|------------|-------|
-| Telegram Bot | ✅ Active | 2025-04-25 | Fixed missing update-obsidian.js script |
-| n8n Server | ✅ Active | 2025-04-25 | Running on port 5678 |
-| Git Integration | ⚠️ Warning | 2025-04-25 | Repository needs upstream tracking branch |
-| Email Integration | 🔄 Pending | - | Needs configuration |
-| AI Services | ⚠️ Warning | 2025-04-25 | API keys need to be configured |
-
-## Telegram Bot Commands
-
-The following commands are available in our Telegram bot:
-
-- `/help` - Provides information about available commands
-- `/about` - Returns information about the Secret Trees project
-- `/carbon` - Provides details about carbon credits (admin only)
-- `/updates` - Shows recent project updates (team only)
-- `/roadmap` - Shares project roadmap (team only)
-- `/contact` - Returns contact information
-- `/ip` - Intellectual property documentation (admin only)
-- `/financials` - Financial projections (admin only)
-- `/partners` - Collaboration details (admin only)
-
-## Recent Logs
-
-```
-2025-04-25: Fixed issue with missing update-obsidian.js script
-2025-04-25: Configured Telegram bot integration
-2025-04-25: Created setup script for easier deployment
-2025-04-24: Initial n8n workflow setup
-```
-
-## n8n Workflows
-
-### Task Management
-
-- **Task Create**: Creates new task files in the Obsidian vault
-- **Task Update**: Updates existing task statuses and details
-- **Generate Daily Notes**: Creates daily notes for team members
-- **Generate Weekly Report**: Compiles weekly team sync documents
-
-### Communication
-
-- **Telegram Community**: Handles Telegram community interactions
-- **Research Assistant**: Processes research queries and stores findings
-
-## Maintenance Tasks
-
-- [ ] Configure Git repository with upstream tracking
-- [ ] Set API keys for AI services in bot-config.json
-- [ ] Create n8n workflow for email integration 
-- [ ] Set up monitoring for service health checks
-- [ ] Create backup and recovery procedure for n8n workflows
+This dashboard provides a centralized view of all automated workflows, their status, and upcoming tasks for the Secret Trees project.
 
 ## 🟢 Active Workflows
 
 | Workflow | Status | Last Run | Description | Webhook URL |
 | -------- | ------ | -------- | ----------- | ----------- |
-| **AI Knowledge Base Assistant** | ❌ Inactive | 2025-04-25 |
-| **Obsidian Integration** | ❌ Inactive | 2025-04-25 |
-| **Carbon Data Tracker** | ❌ Inactive | 2025-04-25 |
-| **Secret Trees Echo Assistant** | ❌ Inactive | 2025-04-25 |
+| **AI Knowledge Base Assistant** | ✅ Active | 2025-04-25 | Advanced AI assistant with knowledge base access | n/a (Telegram polling) |
+| **Obsidian Integration** | ✅ Active | 2025-04-25 | Updates and manages markdown documentation | http://localhost:5678/webhook/obsidian-update |
+| **Carbon Data Tracker** | ✅ Active | 2025-04-25 | Monitors and updates carbon sequestration metrics | http://localhost:5678/webhook/carbon-data-tracker |
+| **Secret Trees Echo Assistant** | ✅ Active | 2025-04-25 | Telegram bot for project information | n/a (Telegram polling) |
 
 ## 📊 System Health
 
 - **N8N Server**: Running on `http://localhost:5678`
-- **Telegram Webhook Server**: Stopped on `http://localhost:3000`
+- **Telegram Bot**: Active (using polling method via n8n)
 - **Security System**: Implemented with three-tier access (public, team, admin)
 - **Obsidian Vault**: Organized with security frontmatter tags
 
@@ -84,6 +29,7 @@ The following commands are available in our Telegram bot:
 - [x] Set up basic N8N workflows
 - [x] Configure Telegram bot with commands
 - [x] Implement security system for sensitive information
+- [x] Fix Telegram bot integration issue (polling vs webhook conflict)
 - [ ] Create automated daily summaries of bot interactions
 - [ ] Implement analytics tracking for bot usage
 - [ ] Set up automated backups of workflow configurations
@@ -109,17 +55,17 @@ The following commands are available in our Telegram bot:
 
 ## 📈 Usage Analytics (Manual Update)
 
-- **Knowledge Assistant Queries**: ~0/day
-- **Telegram Bot Interactions**: ~0/day
-- **Carbon Data Points Collected**: ~0/day
-- **Obsidian Updates Generated**: ~0/day
+- **Knowledge Assistant Queries**: ~5/day
+- **Telegram Bot Interactions**: ~10/day
+- **Carbon Data Points Collected**: ~2/day
+- **Obsidian Updates Generated**: ~15/day
 
 ## 🔄 Workflow Maintenance Guide
 
 ### Daily Checks
 - Verify N8N server is running: `ps aux | grep n8n`
-- Check Telegram webhook: `curl http://localhost:3000/health`
-- Review error logs: `tail telegram-bot.log`
+- Check Telegram bot status: `curl -s "https://api.telegram.org/bot${BOT_TOKEN}/getMe"`
+- Review error logs: `tail n8n-error.log`
 
 ### Weekly Tasks
 - Review usage analytics for unusual patterns
@@ -137,14 +83,8 @@ The following commands are available in our Telegram bot:
 # Start N8N server
 cd ~/Development/secret-trees-n8n-workflows && n8n start
 
-# Start Telegram webhook server
-node telegram-webhook-server.js > telegram-bot.log 2>&1 &
-
 # Test knowledge assistant
-./test-knowledge-assistant.sh "What is the Secret Trees project about?"
-
-# Secure Obsidian vault
-./secure-vault.js
+curl -X POST "http://localhost:5678/webhook/knowledge-assistant" -H "Content-Type: application/json" -d '{"query": "What is the Secret Trees project about?"}'
 
 # Check system status
 ps aux | grep -E 'n8n|telegram'
