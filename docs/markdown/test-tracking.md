@@ -1,0 +1,1 @@
+# Tracking Test\nThis file was created to test Obsidian integration and tracking.

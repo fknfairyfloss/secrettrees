@@ -1,0 +1,338 @@
+{
+  "name": "Secret Trees Task Tracking Workflow",
+  "nodes": [
+    {
+      "parameters": {
+        "endpoint": "/task-create",
+        "httpMethod": "POST",
+        "responseMode": "responseNode"
+      },
+      "name": "Task Create Trigger",
+      "type": "n8n-nodes-base.mcpTrigger",
+      "position": [0, 0]
+    },
+    {
+      "parameters": {
+        "content": "={{ $json.title ? `# Task: ${$json.title}\n\n## Overview\n- **ID**: ${$json.id || `ST-${Date.now().toString().slice(-6)}`}\n- **Created**: ${new Date().toISOString().split('T')[0]}\n- **Due Date**: ${$json.dueDate || 'TBD'}\n- **Owner**: ${$json.owner || 'Unassigned'}\n- **Status**: ${$json.status || 'To Do'}\n- **Priority**: ${$json.priority || 'Medium'}\n\n## Description\n${$json.description || 'No description provided.'}\n\n## Acceptance Criteria\n${$json.criteria ? $json.criteria.split('\\n').map(c => `- [ ] ${c}`).join('\\n') : '- [ ] '}\n\n## Related Tasks\n${$json.relatedTasks ? $json.relatedTasks.split(',').map(t => `- ${t.trim()}`).join('\\n') : '-'}\n\n## Updates\n- ${new Date().toISOString().split('T')[0]}: Task created\n\n## Resources\n${$json.resources ? $json.resources.split(',').map(r => `- ${r.trim()}`).join('\\n') : '-'}\n\n---\n#task #${$json.area || 'general'} #${$json.status ? $json.status.toLowerCase().replace(' ', '-') : 'to-do'}` : 'Invalid task data provided' }}",
+        "options": {}
+      },
+      "name": "Format Task Content",
+      "type": "n8n-nodes-base.set",
+      "position": [220, 0]
+    },
+    {
+      "parameters": {
+        "command": "=cd /home/pixiesbase/Development/Secret_Trees && mkdir -p docs/Tasks/${$json.area || 'General'} && echo \"{{ $node[\"Format Task Content\"].json.content }}\" > docs/Tasks/${$json.area || 'General'}/${$json.id || `ST-${Date.now().toString().slice(-6)}`}-${$json.title.replace(/[^a-z0-9]/gi, '-').toLowerCase()}.md"
+      },
+      "name": "Create Task File",
+      "type": "n8n-nodes-base.executeCommand",
+      "position": [440, 0]
+    },
+    {
+      "parameters": {
+        "endpoint": "/task-update",
+        "httpMethod": "POST",
+        "responseMode": "responseNode"
+      },
+      "name": "Task Update Trigger",
+      "type": "n8n-nodes-base.mcpTrigger",
+      "position": [0, 200]
+    },
+    {
+      "parameters": {
+        "command": "=cd /home/pixiesbase/Development/Secret_Trees && find docs/Tasks -type f -name \"*${$json.id}*.md\" -print"
+      },
+      "name": "Find Task File",
+      "type": "n8n-nodes-base.executeCommand",
+      "position": [220, 200]
+    },
+    {
+      "parameters": {
+        "mode": "runOnceForEachItem",
+        "jsCode": "const taskFilePath = $input.item.json.stdout.trim();\n\nif (taskFilePath === '') {\n  return { json: { error: \"Task file not found\" } };\n}\n\nreturn { json: { taskFilePath } };"
+      },
+      "name": "Extract File Path",
+      "type": "n8n-nodes-base.code",
+      "position": [440, 200]
+    },
+    {
+      "parameters": {
+        "command": "=cat \"{{ $node[\"Extract File Path\"].json.taskFilePath }}\" | grep -i \"^## Updates\""
+      },
+      "name": "Read Updates Section",
+      "type": "n8n-nodes-base.executeCommand",
+      "position": [660, 200]
+    },
+    {
+      "parameters": {
+        "mode": "runOnceForEachItem",
+        "jsCode": "const updateSection = $input.item.json.stdout.trim();\nconst today = new Date().toISOString().split('T')[0];\nconst newUpdate = `- ${today}: ${$node[\"Task Update Trigger\"].json.update || 'Status updated'}`;\n\nreturn { json: { updateSection, newUpdate } };"
+      },
+      "name": "Format Update",
+      "type": "n8n-nodes-base.code",
+      "position": [880, 200]
+    },
+    {
+      "parameters": {
+        "command": "=cd /home/pixiesbase/Development/Secret_Trees && sed -i \"/^## Updates/a {{ $node[\"Format Update\"].json.newUpdate }}\" \"{{ $node[\"Extract File Path\"].json.taskFilePath }}\""
+      },
+      "name": "Add Update to File",
+      "type": "n8n-nodes-base.executeCommand",
+      "position": [1100, 200]
+    },
+    {
+      "parameters": {
+        "command": "=cd /home/pixiesbase/Development/Secret_Trees && sed -i \"s/^- \\*\\*Status\\*\\*: .*$/- **Status**: ${$node[\"Task Update Trigger\"].json.status || 'In Progress'}/\" \"{{ $node[\"Extract File Path\"].json.taskFilePath }}\""
+      },
+      "name": "Update Status",
+      "type": "n8n-nodes-base.executeCommand",
+      "position": [1320, 200]
+    },
+    {
+      "parameters": {
+        "endpoint": "/generate-daily-notes",
+        "httpMethod": "POST",
+        "responseMode": "responseNode"
+      },
+      "name": "Daily Notes Trigger",
+      "type": "n8n-nodes-base.mcpTrigger",
+      "position": [0, 400]
+    },
+    {
+      "parameters": {
+        "content": "={{ \n  const today = new Date().toISOString().split('T')[0];\n  const teamMembers = [\n    'Project Lead',\n    'Technical Architect',\n    'Construction Lead',\n    'Digital Product Manager',\n    'Research Coordinator',\n    'Marketing & Communications',\n    'Financial Analyst'\n  ];\n  \n  let result = {};\n  \n  // Generate daily note template for each team member\n  for (const member of teamMembers) {\n    const memberKey = member.replace(/[^a-zA-Z0-9]/g, '');\n    const template = `# Daily Update ${today}\\n*Update by: ${member}*\\n\\n## Today's Progress\\n- \\n\\n## Tasks Completed\\n- [ ] \\n- [ ] \\n- [ ] \\n\\n## Ongoing Tasks\\n- [ ] \\n- [ ] \\n- [ ] \\n\\n## Blockers / Help Needed\\n- \\n\\n## Tomorrow's Plan\\n- \\n\\n## Notes & Insights\\n- \\n\\n---\\n#daily-update #${member.toLowerCase().replace(/[^a-zA-Z0-9]/g, '-')}`;\n    \n    result[memberKey] = { template, member, date: today };\n  }\n  \n  return { dailyNotes: result };\n}}",
+        "options": {}
+      },
+      "name": "Generate Templates",
+      "type": "n8n-nodes-base.set",
+      "position": [220, 400]
+    },
+    {
+      "parameters": {
+        "command": "=cd /home/pixiesbase/Development/Secret_Trees && mkdir -p \"Daily-Notes/{{ $node[\"Generate Templates\"].json.dailyNotes[\"{{ $json.key }}\"]['date'] }}\""
+      },
+      "name": "Create Date Directory",
+      "type": "n8n-nodes-base.executeCommand",
+      "position": [660, 400]
+    },
+    {
+      "parameters": {
+        "content": "=const keys = Object.keys($node[\"Generate Templates\"].json.dailyNotes);\nreturn keys.map(key => ({ key }));",
+        "options": {}
+      },
+      "name": "Get Team Members",
+      "type": "n8n-nodes-base.set",
+      "position": [440, 400]
+    },
+    {
+      "parameters": {
+        "command": "=cd /home/pixiesbase/Development/Secret_Trees && echo \"{{ $node[\"Generate Templates\"].json.dailyNotes[\"{{ $json.key }}\"]['template'] }}\" > \"Daily-Notes/{{ $node[\"Generate Templates\"].json.dailyNotes[\"{{ $json.key }}\"]['date'] }}/{{ $node[\"Generate Templates\"].json.dailyNotes[\"{{ $json.key }}\"]['member'].replace(/[^a-zA-Z0-9]/g, '-') }}.md\""
+      },
+      "name": "Create Daily Note File",
+      "type": "n8n-nodes-base.executeCommand",
+      "position": [880, 400]
+    },
+    {
+      "parameters": {
+        "endpoint": "/generate-weekly-report",
+        "httpMethod": "POST",
+        "responseMode": "responseNode"
+      },
+      "name": "Weekly Report Trigger",
+      "type": "n8n-nodes-base.mcpTrigger",
+      "position": [0, 600]
+    },
+    {
+      "parameters": {
+        "command": "=cd /home/pixiesbase/Development/Secret_Trees && find docs/Tasks -type f -name \"*.md\" -exec grep -l \"#to-do\\|#in-progress\\|#done\" {} \\;"
+      },
+      "name": "Find All Tasks",
+      "type": "n8n-nodes-base.executeCommand",
+      "position": [220, 600]
+    },
+    {
+      "parameters": {
+        "mode": "runOnceForAllItems",
+        "jsCode": "const taskFiles = $input.item.json.stdout.split('\\n').filter(f => f !== '');\nconst today = new Date();\nconst weekNumber = Math.ceil((today.getDate() - today.getDay()) / 7);\n\nconst result = {\n  weekNumber,\n  date: today.toISOString().split('T')[0],\n  nextWeekDate: new Date(today.getTime() + 7 * 24 * 60 * 60 * 1000).toISOString().split('T')[0],\n  taskFiles\n};\n\nreturn { json: result };"
+      },
+      "name": "Process Task Files",
+      "type": "n8n-nodes-base.code",
+      "position": [440, 600]
+    },
+    {
+      "parameters": {
+        "command": "=cd /home/pixiesbase/Development/Secret_Trees && echo \"# Weekly Team Sync: Week {{ $node[\"Process Task Files\"].json.weekNumber }}\\n*Date: {{ $node[\"Process Task Files\"].json.date }}*\\n\\n## Attendance\\n- [ ] Project Lead\\n- [ ] Technical Architect\\n- [ ] Construction Lead\\n- [ ] Digital Product Manager\\n- [ ] Research Coordinator\\n- [ ] Marketing & Communications\\n- [ ] Financial Analyst\\n\\n## Project Status Overview\\n- Overall Progress: \\n- Key Metrics:\\n  - Construction: \\n  - Digital Platform: \\n  - Research & Verification: \\n  - Marketing & Community: \\n\\n## Task Status\\n\\n### Completed This Week\\n{{ $node[\"Process Task Files\"].json.taskFiles.map(f => \\`cat \"${f}\" | grep -q \"#done\" && echo \"- $(grep \\\"^# Task\\\" \"${f}\" | sed 's/^# Task: //g')\"\\`).join('\\n') }}\\n\\n### In Progress\\n{{ $node[\"Process Task Files\"].json.taskFiles.map(f => \\`cat \"${f}\" | grep -q \"#in-progress\" && echo \"- $(grep \\\"^# Task\\\" \"${f}\" | sed 's/^# Task: //g')\"\\`).join('\\n') }}\\n\\n### To Do (Prioritized)\\n{{ $node[\"Process Task Files\"].json.taskFiles.map(f => \\`cat \"${f}\" | grep -q \"#to-do\" && echo \"- $(grep \\\"^# Task\\\" \"${f}\" | sed 's/^# Task: //g')\"\\`).join('\\n') }}\\n\\n## Team Updates\\n\\n### Project Lead\\n- \\n\\n### Technical Architect\\n- \\n\\n### Construction Lead\\n- \\n\\n### Digital Product Manager\\n- \\n\\n### Research Coordinator\\n- \\n\\n### Marketing & Communications\\n- \\n\\n### Financial Analyst\\n- \\n\\n## Key Decisions\\n- \\n\\n## Action Items for This Week\\n- [ ] \\n- [ ] \\n- [ ] \\n\\n## Blockers Addressed\\n- \\n\\n## Notable Risks\\n- \\n\\n## Next Meeting\\n- Date: {{ $node[\"Process Task Files\"].json.nextWeekDate }}\\n- Focus Areas:\\n  - \\n\\n---\\n#team-sync #weekly\" > \"docs/Team/WeeklySync/Week-{{ $node[\"Process Task Files\"].json.weekNumber }}.md\""
+      },
+      "name": "Create Weekly Sync Report",
+      "type": "n8n-nodes-base.executeCommand",
+      "position": [660, 600]
+    }
+  ],
+  "connections": {
+    "Task Create Trigger": {
+      "main": [
+        [
+          {
+            "node": "Format Task Content",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Format Task Content": {
+      "main": [
+        [
+          {
+            "node": "Create Task File",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Task Update Trigger": {
+      "main": [
+        [
+          {
+            "node": "Find Task File",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Find Task File": {
+      "main": [
+        [
+          {
+            "node": "Extract File Path",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Extract File Path": {
+      "main": [
+        [
+          {
+            "node": "Read Updates Section",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Read Updates Section": {
+      "main": [
+        [
+          {
+            "node": "Format Update",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Format Update": {
+      "main": [
+        [
+          {
+            "node": "Add Update to File",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Add Update to File": {
+      "main": [
+        [
+          {
+            "node": "Update Status",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Daily Notes Trigger": {
+      "main": [
+        [
+          {
+            "node": "Generate Templates",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Generate Templates": {
+      "main": [
+        [
+          {
+            "node": "Get Team Members",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Get Team Members": {
+      "main": [
+        [
+          {
+            "node": "Create Date Directory",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Create Date Directory": {
+      "main": [
+        [
+          {
+            "node": "Create Daily Note File",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Weekly Report Trigger": {
+      "main": [
+        [
+          {
+            "node": "Find All Tasks",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Find All Tasks": {
+      "main": [
+        [
+          {
+            "node": "Process Task Files",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Process Task Files": {
+      "main": [
+        [
+          {
+            "node": "Create Weekly Sync Report",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  }
+} 

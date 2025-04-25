@@ -1,0 +1,14 @@
+Starting n8n MCP Server...
+Verifying n8n API connectivity...
+ERROR: Failed to connect to n8n API: MCP error 1002: Failed to connect to n8n API (Status: 404)
+Details: 404
+Failed to start n8n MCP Server: N8nApiError: MCP error 1002: Failed to connect to n8n API (Status: 404)
+Details: 404
+    at handleAxiosError (file:///home/pixiesbase/.nvm/versions/node/v18.20.8/lib/node_modules/n8n-mcp-server/build/errors/index.js:85:16)
+    at N8nApiClient.checkConnectivity (file:///home/pixiesbase/.nvm/versions/node/v18.20.8/lib/node_modules/n8n-mcp-server/build/api/client.js:58:19)
+    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)
+    at async configureServer (file:///home/pixiesbase/.nvm/versions/node/v18.20.8/lib/node_modules/n8n-mcp-server/build/config/server.js:27:9)
+    at async main (file:///home/pixiesbase/.nvm/versions/node/v18.20.8/lib/node_modules/n8n-mcp-server/build/index.js:20:24) {
+  code: 1002,
+  data: undefined
+}

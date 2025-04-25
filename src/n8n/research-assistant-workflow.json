@@ -1,0 +1,359 @@
+{
+  "nodes": [
+    {
+      "parameters": {
+        "content": "# Research Task Configuration\n\n## Search Parameters\n- **Query**: {{$node[\"Form Trigger\"].data.query}}\n- **Output Format**: {{$node[\"Form Trigger\"].data.output_format}}\n- **Max Results**: {{$node[\"Form Trigger\"].data.max_results}}\n\n## Search Categories\n- Partners: Companies involved in hemp construction, certification bodies, or research institutions\n- Funding: Grant opportunities, investment funds for sustainable projects\n- Regulations: Updates on EU hemp policies or carbon credit frameworks\n\n## Output Templates\n- Partner profiles will use the consortium-partner.md template\n- Funding opportunities will use the funding-source.md template",
+        "additionalFields": {}
+      },
+      "name": "Configuration Note",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 2,
+      "position": [
+        340,
+        400
+      ]
+    },
+    {
+      "parameters": {
+        "form": {
+          "schema": {
+            "type": "object",
+            "properties": {
+              "query": {
+                "type": "string",
+                "description": "Search query for Perplexity research"
+              },
+              "output_format": {
+                "type": "string",
+                "description": "Output format (consortium_partner or funding_source)",
+                "enum": [
+                  "consortium_partner",
+                  "funding_source"
+                ]
+              },
+              "max_results": {
+                "type": "number",
+                "description": "Maximum number of results to return",
+                "default": 3
+              }
+            },
+            "required": [
+              "query",
+              "output_format"
+            ]
+          },
+          "uiSchema": {
+            "ui:order": [
+              "query",
+              "output_format",
+              "max_results"
+            ]
+          }
+        },
+        "fields": {
+          "values": [
+            {
+              "name": "query",
+              "value": "hemp construction companies with certification capabilities in EU"
+            },
+            {
+              "name": "output_format",
+              "value": "consortium_partner"
+            },
+            {
+              "name": "max_results",
+              "value": 3
+            }
+          ]
+        }
+      },
+      "name": "Form Trigger",
+      "type": "n8n-nodes-base.form",
+      "typeVersion": 1,
+      "position": [
+        120,
+        400
+      ]
+    },
+    {
+      "parameters": {
+        "url": "https://api.perplexity.ai/chat/completions",
+        "authentication": "genericCredentialType",
+        "genericAuthType": "httpHeaderAuth",
+        "options": {
+          "response": {
+            "response": {
+              "fullResponse": true,
+              "responseFormat": "json"
+            }
+          }
+        },
+        "sendBody": true,
+        "bodyParameters": {
+          "parameters": [
+            {
+              "name": "model",
+              "value": "llama-3-sonar-large-32k-online"
+            },
+            {
+              "name": "messages",
+              "value": "={{ [\n  {\n    \"role\": \"system\",\n    \"content\": \"You are a research assistant helping to find potential consortium partners or funding sources for the Secret Trees project. Secret Trees is an eco-tourism project being developed in Latvia's Saldus region that combines hempcrete construction (for carbon sequestration), blockchain tokenization of environmental benefits, and sustainable tourism. Generate detailed, factual information with sources. Format output to match the requested template structure.\"\n  },\n  {\n    \"role\": \"user\",\n    \"content\": $node[\"Form Trigger\"].data.query + \". Format as \" + $node[\"Form Trigger\"].data.output_format + \". Return exactly \" + $node[\"Form Trigger\"].data.max_results + \" results. Include contact information and website if available.\"\n  }\n] }}"
+            },
+            {
+              "name": "temperature",
+              "value": 0.1
+            },
+            {
+              "name": "max_tokens",
+              "value": 4000
+            }
+          ]
+        }
+      },
+      "name": "Perplexity API",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.1,
+      "position": [
+        560,
+        400
+      ],
+      "credentials": {
+        "httpHeaderAuth": {
+          "id": "1",
+          "name": "Perplexity API Key"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "functionCode": "// Parse the Perplexity response\nconst perplexityResponse = $input.item.json.choices[0].message.content;\nconst outputFormat = $node[\"Form Trigger\"].data.output_format;\nlet parsedResults = [];\n\n// Split the content by markdown headers if multiple results\nlet resultSections = perplexityResponse.split(/^# /m).filter(section => section.trim().length > 0);\n\n// If no clear sections, treat as one result\nif (resultSections.length === 0) {\n  resultSections = [perplexityResponse];\n}\n\n// Process each result based on the output format\nfor (const section of resultSections) {\n  let resultObj = {};\n  \n  if (outputFormat === 'consortium_partner') {\n    // Extract organization info\n    const nameMatch = section.match(/(?:Consortium Partner:|Name):\\s*([^\\n]+)/);\n    const typeMatch = section.match(/Type:\\s*([^\\n]+)/);\n    const countryMatch = section.match(/Country:\\s*([^\\n]+)/);\n    const websiteMatch = section.match(/Website:\\s*([^\\n]+)/);\n    const industryMatch = section.match(/Industry:\\s*([^\\n]+)/);\n    \n    // Extract contact info\n    const contactMatch = section.match(/Primary Contact:\\s*([^\\n]+)/);\n    const positionMatch = section.match(/Position:\\s*([^\\n]+)/);\n    const emailMatch = section.match(/Email:\\s*([^\\n]+)/);\n    const phoneMatch = section.match(/Phone:\\s*([^\\n]+)/);\n    \n    // Create result object\n    resultObj = {\n      partner_name: nameMatch ? nameMatch[1].trim() : 'Unknown Organization',\n      partner_type: typeMatch ? typeMatch[1].trim() : 'Research Institution',\n      country: countryMatch ? countryMatch[1].trim() : '',\n      website: websiteMatch ? websiteMatch[1].trim() : '',\n      industry: industryMatch ? industryMatch[1].trim() : '',\n      contact_person: contactMatch ? contactMatch[1].trim() : '',\n      contact_position: positionMatch ? positionMatch[1].trim() : '',\n      contact_email: emailMatch ? emailMatch[1].trim() : '',\n      contact_phone: phoneMatch ? phoneMatch[1].trim() : '',\n      technical_fit: 'Needs assessment',\n      grant_relevance: 'Needs assessment',\n      eu_experience: 'Unknown',\n      collaboration_history: 'None',\n      expertise_area: 'Hemp Construction',\n      proposed_role: 'Potential Consortium Partner',\n      resources: '',\n      complementary_skills: '',\n      status: 'Research Identified',\n      initial_contact_date: '',\n      last_followup: '',\n      next_action: 'Review profile and decide on contact approach',\n      response_summary: '',\n      notes: `Generated by Research Assistant Bot on ${new Date().toISOString().split('T')[0]}`,\n      grant_application: 'Horizon-CL5-2027-D5-01',\n      related_documents: '01-Carbon-Methodology'\n    };\n  } else if (outputFormat === 'funding_source') {\n    // Extract funding info\n    const nameMatch = section.match(/(?:Funding Opportunity:|Program Name):\\s*([^\\n]+)/);\n    const typeMatch = section.match(/Type:\\s*([^\\n]+)/);\n    const providerMatch = section.match(/Provider:\\s*([^\\n]+)/);\n    const websiteMatch = section.match(/Website:\\s*([^\\n]+)/);\n    const amountMatch = section.match(/Total Amount Available:\\s*([^\\n]+)/);\n    const deadlineMatch = section.match(/Deadline:\\s*([^\\n]+)/);\n    \n    // Create result object\n    resultObj = {\n      funding_name: nameMatch ? nameMatch[1].trim() : 'Unknown Fund',\n      funding_type: typeMatch ? typeMatch[1].trim() : 'Grant',\n      provider: providerMatch ? providerMatch[1].trim() : '',\n      website: websiteMatch ? websiteMatch[1].trim() : '',\n      geographic_focus: 'European Union',\n      amount: amountMatch ? amountMatch[1].trim() : '',\n      cofinancing: '',\n      eligible_expenses: '',\n      funding_period: '',\n      deadline: deadlineMatch ? deadlineMatch[1].trim() : '',\n      submission_portal: '',\n      decision_timeline: '',\n      grant_manager: '',\n      consortium_size: '',\n      eligible_countries: 'EU Member States',\n      required_docs: '',\n      reporting: '',\n      alignment: 'Needs assessment',\n      success_probability: 'Needs assessment',\n      effort: 'Needs assessment',\n      strategic_importance: 'Needs assessment',\n      notes: `Generated by Research Assistant Bot on ${new Date().toISOString().split('T')[0]}`,\n      related_partners: 'Partners/Consortium',\n      related_projects: '00-Project-Overview'\n    };\n  }\n  \n  parsedResults.push(resultObj);\n}\n\n// Limit to requested number of results\nparsedResults = parsedResults.slice(0, $node[\"Form Trigger\"].data.max_results);\n\n// Return the parsed results\nreturn {json: {parsedResults}};"
+      },
+      "name": "Parse Results",
+      "type": "n8n-nodes-base.function",
+      "typeVersion": 1,
+      "position": [
+        780,
+        400
+      ]
+    },
+    {
+      "parameters": {
+        "mode": "runOnceForEachItem",
+        "jsCode": "// Extract data from the current item\nconst result = $input.item.json;\nconst outputFormat = $node[\"Form Trigger\"].data.output_format;\n\n// Generate a formatted date for the filename\nconst today = new Date().toISOString().split('T')[0]; // Format: YYYY-MM-DD\n\n// Generate a safe filename\nconst sanitizedName = result.partner_name || result.funding_name || \"unknown\";\nconst safeFilename = sanitizedName.replace(/[^a-zA-Z0-9]/g, '-').toLowerCase();\n\n// Determine the template file to use\nlet templatePath = \"\";\nlet outputPath = \"\";\nlet filename = \"\";\n\nif (outputFormat === 'consortium_partner') {\n  templatePath = \"docs/markdown/Templates/consortium-partner.md\";\n  outputPath = `docs/markdown/Partners/Consortium/${today}-${safeFilename}.md`;\n  filename = `${today}-${safeFilename}.md`;\n} else if (outputFormat === 'funding_source') {\n  templatePath = \"docs/markdown/Templates/funding-source.md\";\n  outputPath = `docs/markdown/Funding/Opportunities/${today}-${safeFilename}.md`;\n  filename = `${today}-${safeFilename}.md`;\n}\n\n// Return the paths and data to be used by the next nodes\nreturn {\n  json: {\n    result,\n    templatePath,\n    outputPath,\n    filename\n  }\n};"
+      },
+      "name": "Prepare Files",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 1,
+      "position": [
+        1000,
+        400
+      ]
+    },
+    {
+      "parameters": {
+        "command": "=cd /home/pixiesbase/Development/Secret_Trees && cat {{ $node[\"Prepare Files\"].json.templatePath }} | sed {% for key, value in $node[\"Prepare Files\"].json.result %}\"s/{{{{ {{ key }} }}}}/{{ value | replace(\"/\", \"\\/\") | replace(\"&\", \"\\\\&\") }}/g\" {% endfor %} > {{ $node[\"Prepare Files\"].json.outputPath }}",
+        "executeTimeout": 60
+      },
+      "name": "Generate File",
+      "type": "n8n-nodes-base.executeCommand",
+      "typeVersion": 1,
+      "position": [
+        1220,
+        400
+      ]
+    },
+    {
+      "parameters": {
+        "command": "=cd /home/pixiesbase/Development/Secret_Trees && git add {{ $node[\"Prepare Files\"].json.outputPath }} && git commit -m \"Add {{ $node[\"Prepare Files\"].json.result.partner_name || $node[\"Prepare Files\"].json.result.funding_name }} research from n8n bot\"",
+        "executeTimeout": 60
+      },
+      "name": "Commit to Git",
+      "type": "n8n-nodes-base.executeCommand",
+      "typeVersion": 1,
+      "position": [
+        1440,
+        400
+      ]
+    },
+    {
+      "parameters": {
+        "operation": "get",
+        "path": "=docs/markdown/README.md",
+        "options": {}
+      },
+      "name": "Update README",
+      "type": "n8n-nodes-base.fileSystem",
+      "typeVersion": 1,
+      "position": [
+        1440,
+        580
+      ]
+    },
+    {
+      "parameters": {
+        "content": "=# Research Assistant Bot Results\n\n**Query**: {{ $node[\"Form Trigger\"].data.query }}\n**Date**: {{ $today = new Date().toISOString().split('T')[0]; $today }}\n**Results**: {{ $node[\"Parse Results\"].json.parsedResults.length }}\n\n## Generated Files\n{% for item in $node[\"Parse Results\"].json.parsedResults %}\n- [{{ item.partner_name || item.funding_name }}]({{ $node[\"Prepare Files\"].json.outputPath }})\n{% endfor %}\n\n## Next Steps\n- Review generated profiles\n- Update assessment fields\n- Plan outreach strategy\n\n#research-bot #auto-generated",
+        "options": {}
+      },
+      "name": "Generate Summary",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 2,
+      "position": [
+        1660,
+        400
+      ]
+    },
+    {
+      "parameters": {
+        "operation": "write",
+        "path": "=docs/markdown/Partners/research-summary-{{ $today = new Date().toISOString().split('T')[0]; $today }}.md",
+        "content": "={{ $node[\"Generate Summary\"].json.content }}",
+        "options": {}
+      },
+      "name": "Write Summary",
+      "type": "n8n-nodes-base.fileSystem",
+      "typeVersion": 1,
+      "position": [
+        1880,
+        400
+      ]
+    },
+    {
+      "parameters": {
+        "command": "=cd /home/pixiesbase/Development/Secret_Trees && git add docs/markdown/Partners/research-summary-{{ $today = new Date().toISOString().split('T')[0]; $today }}.md && git commit -m \"Add research summary for {{ $today = new Date().toISOString().split('T')[0]; $today }}\"",
+        "executeTimeout": 60
+      },
+      "name": "Commit Summary",
+      "type": "n8n-nodes-base.executeCommand",
+      "typeVersion": 1,
+      "position": [
+        2100,
+        400
+      ]
+    }
+  ],
+  "connections": {
+    "Form Trigger": {
+      "main": [
+        [
+          {
+            "node": "Configuration Note",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Configuration Note": {
+      "main": [
+        [
+          {
+            "node": "Perplexity API",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Perplexity API": {
+      "main": [
+        [
+          {
+            "node": "Parse Results",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Parse Results": {
+      "main": [
+        [
+          {
+            "node": "Prepare Files",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Prepare Files": {
+      "main": [
+        [
+          {
+            "node": "Generate File",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Generate File": {
+      "main": [
+        [
+          {
+            "node": "Commit to Git",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Update README",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Commit to Git": {
+      "main": [
+        [
+          {
+            "node": "Generate Summary",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Generate Summary": {
+      "main": [
+        [
+          {
+            "node": "Write Summary",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Write Summary": {
+      "main": [
+        [
+          {
+            "node": "Commit Summary",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": false,
+  "settings": {},
+  "versionId": "40c2d23a-abc0-4cc3-a04f-c249f75f6c34",
+  "id": "108",
+  "meta": {
+    "instanceId": "c09c7dec00ebfd5fd6a5e63628e56ee79fdc1f92b3654378f75df29ac4e3ed56"
+  },
+  "tags": [
+    {
+      "name": "research",
+      "createdAt": "2025-04-23T15:30:32.521Z",
+      "updatedAt": "2025-04-23T15:30:32.521Z"
+    },
+    {
+      "name": "Secret Trees",
+      "createdAt": "2025-04-23T15:30:32.521Z",
+      "updatedAt": "2025-04-23T15:30:32.521Z"
+    }
+  ]
+} 

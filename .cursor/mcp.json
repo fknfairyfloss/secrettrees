@@ -1,0 +1,9 @@
+{
+  "mcpServers": {
+    "n8n-mcp-localhost": {
+      "enabled": true,
+      "url": "http://localhost:5679/mcp",
+      "projectManaged": true
+    }
+  }
+}

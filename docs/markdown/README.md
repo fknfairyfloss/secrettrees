@@ -15,4 +15,16 @@ This repository contains all core documentation for the Secret Trees regenerativ
 - [[08-Business-Model]]
 - [[09-Risk-Assessment]]
 - [[10-Investor-Pitch]]
-- [[99-References]] 
+- [[99-References]]
+
+## Project Management
+- [[project-management-index|Project Management Hub]] - Central navigation for all PM resources
+- [[n8n-workflow-dashboard|Workflow Dashboard]] - Status of automation systems
+- [[tasks-backlog|Task Backlog]] - Prioritized pending work
+- [[decision-log|Decision Log]] - Record of key project decisions
+
+## Quick Access
+- 🔄 **Current Status**: Check the [[n8n-workflow-dashboard|Workflow Dashboard]] 
+- 📝 **Next Tasks**: View the [[tasks-backlog|Task Backlog]]
+- 📊 **Planning**: Use the [[weekly-planning-template|Weekly Planning Template]]
+- 📚 **Framework**: Review our [[project-management|Project Management Framework]] 

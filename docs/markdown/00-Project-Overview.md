@@ -36,6 +36,16 @@ Latvia presents a unique opportunity in the Baltic region due to:
 - Real Asset, Real Impact: Blending tourism, land use, and environmental accountability
 - Proof-Driven: Demo cottage includes embedded sensors, transparent wall cutouts, and live carbon tracking
 
+## Project Management & Automation
+
+Secret Trees employs an advanced automation system for documentation and project tracking:
+- Automated carbon metrics tracking and documentation
+- Knowledge base for project information accessible via API
+- Integrated workflows for updating project documentation
+- Comprehensive tracking system for all project changes
+
+See our [[Secret-Trees-Workflow-Map|automation workflow map]] for details on how our systems work together.
+
 ## Development Roadmap Snapshot
 
 - Pre-Demo (Q1–Q2 2025): Finalize land zones, legal prep, first investor closes
@@ -45,4 +55,4 @@ Latvia presents a unique opportunity in the Baltic region due to:
 - Phase One (2026): Launch first 6–10 rental-ready cottages with partner investors
 - Scale (2027+): Expand into full 20+ unit carbon-positive ecosystem
 
-See also: [[01-Carbon-Methodology]] | [[03-Tokenization-Strategy]] | [[10-Investor-Pitch]] 
+See also: [[01-Carbon-Methodology]] | [[03-Tokenization-Strategy]] | [[10-Investor-Pitch]] | [[n8n-Progress-Report]] 

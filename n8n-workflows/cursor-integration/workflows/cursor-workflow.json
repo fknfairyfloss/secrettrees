@@ -1,0 +1,76 @@
+{
+  "name": "Cursor Integration Workflow",
+  "nodes": [
+    {
+      "parameters": {
+        "endpoint": "/cursor-workflow",
+        "httpMethod": "POST",
+        "responseMode": "responseNode"
+      },
+      "name": "MCP Trigger",
+      "type": "n8n-nodes-base.mcpTrigger",
+      "position": [0, 0]
+    },
+    {
+      "parameters": {
+        "operation": "getAll"
+      },
+      "name": "Get All Workflows",
+      "type": "n8n-nodes-base.n8n",
+      "position": [220, 0]
+    },
+    {
+      "parameters": {
+        "model": "gpt-3.5-turbo",
+        "prompt": "=Find the most relevant workflow based on: {{$json[\"query\"]}}"
+      },
+      "name": "AI Processing",
+      "type": "n8n-nodes-base.openAi",
+      "position": [440, 0]
+    },
+    {
+      "parameters": {
+        "keepOnlySet": true,
+        "options": {}
+      },
+      "name": "Return Workflow",
+      "type": "n8n-nodes-base.set",
+      "position": [660, 0]
+    }
+  ],
+  "connections": {
+    "MCP Trigger": {
+      "main": [
+        [
+          {
+            "node": "Get All Workflows",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Get All Workflows": {
+      "main": [
+        [
+          {
+            "node": "AI Processing",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "AI Processing": {
+      "main": [
+        [
+          {
+            "node": "Return Workflow",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  }
+} 

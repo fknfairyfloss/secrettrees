@@ -79,3 +79,12 @@ Secret Trees will maintain:
 - Public-facing verification dashboard
 
 See also: [[03-Tokenization-Strategy]] | [[04-Legal-Compliance]] 
+
+## Automated Carbon Data Update
+*Last updated: 4/24/2025, 10:25:57 PM*
+
+- Carbon Sequestered: 128 tons
+- Forested Area: 8.5 hectares
+- Tree Species: Pine, Oak, Birch, Maple, Spruce
+
+> This data was automatically updated by the Secret Trees tracking system.
