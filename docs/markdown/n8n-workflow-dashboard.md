@@ -12,10 +12,13 @@ This dashboard provides a centralized view of all automated workflows, their sta
 
 | Workflow | Status | Last Run | Description | Webhook URL |
 | -------- | ------ | -------- | ----------- | ----------- |
-| **AI Knowledge Base Assistant** | ✅ Active | 2025-04-25 | Advanced AI assistant with knowledge base access | n/a (Telegram polling) |
-| **Obsidian Integration** | ✅ Active | 2025-04-25 | Updates and manages markdown documentation | http://localhost:5678/webhook/obsidian-update |
-| **Carbon Data Tracker** | ✅ Active | 2025-04-25 | Monitors and updates carbon sequestration metrics | http://localhost:5678/webhook/carbon-data-tracker |
-| **Secret Trees Echo Assistant** | ✅ Active | 2025-04-25 | Telegram bot for project information | n/a (Telegram polling) |
+| **AI Knowledge Base Assistant** | ❌ Inactive | 2025-04-26 |
+| **Obsidian Integration** | ❌ Inactive | 2025-04-26 |
+| **Carbon Data Tracker** | ❌ Inactive | 2025-04-26 |
+| **Secret Trees Echo Assistant** | ❌ Inactive | 2025-04-26 |
+
+## ⚠️ Action Required
+The workflows are currently inactive. They need to be reactivated in the n8n dashboard. Navigate to http://localhost:5678 and toggle each workflow to active.
 
 ## 📊 System Health
 
@@ -30,7 +33,7 @@ This dashboard provides a centralized view of all automated workflows, their sta
 - [x] Configure Telegram bot with commands
 - [x] Implement security system for sensitive information
 - [x] Fix Telegram bot integration issue (polling vs webhook conflict)
-- [ ] Create automated daily summaries of bot interactions
+- [ ] **NEXT PRIORITY:** Create automated daily summaries of bot interactions
 - [ ] Implement analytics tracking for bot usage
 - [ ] Set up automated backups of workflow configurations
 - [ ] Integrate carbon data collection with visualization dashboard
@@ -55,10 +58,10 @@ This dashboard provides a centralized view of all automated workflows, their sta
 
 ## 📈 Usage Analytics (Manual Update)
 
-- **Knowledge Assistant Queries**: ~5/day
-- **Telegram Bot Interactions**: ~10/day
-- **Carbon Data Points Collected**: ~2/day
-- **Obsidian Updates Generated**: ~15/day
+- **Knowledge Assistant Queries**: ~0/day
+- **Telegram Bot Interactions**: ~0/day
+- **Carbon Data Points Collected**: ~0/day
+- **Obsidian Updates Generated**: ~0/day
 
 ## 🔄 Workflow Maintenance Guide
 
@@ -103,4 +106,4 @@ ps aux | grep -E 'n8n|telegram'
 ---
 
 > [!note]
-> This dashboard is automatically updated weekly with current status information. Last update: 2025-04-25 
+> This dashboard is automatically updated weekly with current status information. Last update: 2025-04-26 

@@ -1,66 +1,66 @@
 ---
 security: team
-tags: project-management, index, MOC
-created: 2025-04-25
+tags: project-management, index, documentation, workflow
+created: 2025-04-22
 ---
 
 # Secret Trees Project Management Hub
 
-This Map of Content (MOC) serves as the central navigation point for all project management resources for the Secret Trees initiative.
+This document serves as a central navigation point for all project management resources in the Secret Trees project.
 
-## 🔄 Current Project Status
+## Key Dashboards
 
-- [[n8n-workflow-dashboard|Workflow Dashboard]] - System status and monitoring
-- [[tasks-backlog|Task Backlog]] - Prioritized list of pending work
-- [[project-management|Project Management Framework]] - Overall methodology
+- [[n8n-workflow-dashboard|Workflow Dashboard]] - Status of active n8n workflows and automation systems
+- [[Milestone-Dashboard|Milestone Tracking]] - Visual tracking of project milestones and progress
+- [[Risk-Dashboard|Risk Assessment]] - Current project risks and mitigation strategies
+- [[tasks-backlog|Task Backlog]] - Prioritized list of pending work items
 
-## 📅 Planning Tools
+## Project Documentation
 
-- [[weekly-planning-template|Weekly Planning Template]]
-- [[quarterly-objectives|Quarterly Objectives]]
-- [[resource-allocation|Resource Allocation]]
-- [[risk-register|Risk Register]]
+- [[00-Project-Overview|Project Overview]] - High-level introduction to Secret Trees
+- [[01-Carbon-Methodology|Carbon Methodology]] - Documentation on carbon sequestration approach
+- [[Secret-Trees-Workflow-Map|Workflow Automation Map]] - How our automation systems connect
+- [[Email-Integration-Guide|Email Integration Guide]] - How to use the email digest system
 
-## 📊 Progress Tracking
+## Planning Resources
 
-- [[sprint-reports|Sprint Reports]]
-- [[milestone-tracking|Milestone Tracking]]
-- [[project-metrics|Key Project Metrics]]
+- [[weekly-planning-template|Weekly Planning Template]] - Template for weekly planning sessions
+- [[decision-log|Decision Log]] - Record of key project decisions
+- [[Dynamic-Risk-Matrix|Risk Matrix]] - Visualize risks by severity and probability
+- [[Canvas-Maps/Project-Timeline|Project Timeline]] - Visual timeline of the project
 
-## 👥 Team Resources
+## Automation Systems
 
-- [[team-roles|Team Roles and Responsibilities]]
-- [[meeting-notes|Meeting Notes]] 
-- [[decision-log|Decision Log]]
-- [[communication-plan|Communication Plan]]
+- [[Secret-Trees-Workflow-Map|Workflow Automation Map]] - Overview of n8n workflows
+- [[Update-n8n-Workflows|Workflow Update Guide]] - Guide to updating workflow names
+- [[n8n-Progress-Report|n8n Integration Progress]] - Current status of n8n integration
+- [[Canvas-Maps/Email-Mind-Map|Email Integration Map]] - Visual map of email processing system
 
-## 🛠️ Development Resources
+## Team Resources
 
-- [[development-standards|Development Standards]]
-- [[testing-strategy|Testing Strategy]]
-- [[deployment-process|Deployment Process]]
-- [[documentation-guide|Documentation Guide]]
+- [[obsidian-integration-log|Obsidian Integration Log]] - Audit log of documentation changes
+- [[telegram-integration-log|Telegram Bot Integration Log]] - Log of Telegram bot integration
+- [[Access-Control-Matrix|Access Control Matrix]] - Security roles and permissions
+- [[00-Obsidian-Guide|Obsidian Usage Guide]] - How to use our Obsidian setup effectively
 
-## 📚 Project Documentation
+## Reference Materials
 
-- [[00-Project-Overview|Project Overview]]
-- [[01-Carbon-Methodology|Carbon Methodology]]
-- [[02-Construction-Specs|Construction Specifications]]
-- [[03-Tokenization-Strategy|Tokenization Strategy]]
-
-## 🚀 Quick Actions
-
-- Tap a bot's help: ⚡ Run `/start` in Telegram to view available commands
-- Need workflow status? ⚡ Check [[n8n-workflow-dashboard|Workflow Dashboard]]
-- See pending tasks? ⚡ View [[tasks-backlog|Task Backlog]]
-- Plan next sprint? ⚡ Use [[weekly-planning-template|Weekly Planning Template]]
-- Track decisions? ⚡ Update [[decision-log|Decision Log]]
+- [[99-References|References]] - External resources and references
+- [[project-management|Project Management Framework]] - Our project management methodology
+- [[Templater-Scripts|Templater Scripts Documentation]] - Documentation for Obsidian automation scripts
 
 ---
 
-> [!tip] Project Management Tips
-> - Review the dashboard daily
-> - Update task status weekly
-> - Schedule 15-minute daily check-ins
-> - Document all key decisions
-> - Automate repetitive tasks through n8n workflows 
+## Quick Actions
+
+- 🔄 **Update Task Status**: Edit [[tasks-backlog|Task Backlog]]
+- 📊 **Check Workflow Status**: View [[n8n-workflow-dashboard|Workflow Dashboard]]
+- 📝 **Log Decision**: Add to [[decision-log|Decision Log]]
+- 📆 **Plan Week**: Use [[weekly-planning-template|Weekly Planning Template]]
+- 📧 **View Email Digests**: Check Daily Notes for email-digest files
+- 🗺️ **Visualize Project**: Open [[Canvas-Maps/Email-Mind-Map|Email Integration Map]]
+
+---
+
+> [!note]
+> This index is maintained by the project management team and should be updated whenever new documentation or resources are added. 

@@ -1,0 +1,31 @@
+{
+	"nodes":[
+		{"id":"f6b60cef0adf26fd","x":-500,"y":-400,"width":400,"height":60,"type":"text","text":"# Secret Trees Email Integration"},
+		{"id":"1ba9f9c9bff20c84","x":0,"y":-400,"width":600,"height":400,"type":"file","file":"markdown/templates/email-digest-template.md"},
+		{"id":"e0e9f5b13e1a8e33","x":-1000,"y":-220,"width":400,"height":60,"type":"text","text":"## Project Emails"},
+		{"id":"84de9bf7bf9ef0b4","x":-1000,"y":-100,"width":400,"height":60,"type":"text","text":"## Property Management"},
+		{"id":"a6a53b9a7429df46","x":-1000,"y":20,"width":400,"height":60,"type":"text","text":"## Family & Personal"},
+		{"id":"a694d1dc0b47c59a","x":-500,"y":-220,"width":400,"height":60,"type":"text","text":"- Carbon Tokenization Updates\n- Eco-tourism Partnerships\n- Investor Communications\n- Construction Updates"},
+		{"id":"e73c1e0af39b456d","x":-500,"y":-100,"width":400,"height":60,"type":"text","text":"- Garden Maintenance\n- Construction Progress\n- Local Contractor Comms\n- Equipment Purchases"},
+		{"id":"d25afa26cc1d22bf","x":-500,"y":20,"width":400,"height":60,"type":"text","text":"- Family Health Updates\n- Travel Planning\n- Personal Finance\n- Education Updates"},
+		{"id":"21deea9343be9e9c","x":-500,"y":220,"width":400,"height":60,"type":"text","text":"## Email Integration Workflow"},
+		{"id":"7b0eb6e8d14ca5ef","x":-1000,"y":220,"width":400,"height":180,"type":"text","text":"### n8n Workflow Steps\n1. Fetch emails (IMAP)\n2. Classify by keywords\n3. Extract summaries\n4. Format as markdown\n5. Save to Obsidian\n6. Send Telegram notification"},
+		{"id":"ec8ac11f09bbfc53","x":0,"y":220,"width":400,"height":180,"type":"text","text":"### Mobile Integration\n- View digests in Obsidian mobile\n- Receive Telegram notifications\n- Quick links to full emails\n- Task extraction for action items\n- Daily/Weekly summaries for overview"},
+		{"id":"4c46e92b3c841608","x":-500,"y":420,"width":400,"height":180,"type":"text","text":"### Recommended Obsidian Plugins\n- Dataview (for email queries)\n- Calendar (for viewing digests by date)\n- Tasks (for extracted action items)\n- Templater (for custom digest formats)\n- Kanban (for visual task management)"},
+		{"id":"1a9e4cc54d36a4f7","x":0,"y":-50,"width":300,"height":220,"type":"file","file":"markdown/n8n-workflow-dashboard.md"}
+	],
+	"edges":[
+		{"id":"43b0fc77d83f8a89","fromNode":"f6b60cef0adf26fd","fromSide":"bottom","toNode":"e0e9f5b13e1a8e33","toSide":"top"},
+		{"id":"69ccf99f88fa95fb","fromNode":"f6b60cef0adf26fd","fromSide":"bottom","toNode":"84de9bf7bf9ef0b4","toSide":"top"},
+		{"id":"a823b4d72bfba14e","fromNode":"f6b60cef0adf26fd","fromSide":"bottom","toNode":"a6a53b9a7429df46","toSide":"top"},
+		{"id":"6ee7c9ed4c8e761e","fromNode":"f6b60cef0adf26fd","fromSide":"right","toNode":"1ba9f9c9bff20c84","toSide":"left"},
+		{"id":"3ba5c1889bb1f69b","fromNode":"f6b60cef0adf26fd","fromSide":"bottom","toNode":"21deea9343be9e9c","toSide":"top"},
+		{"id":"78d31d8a0ae7a4c9","fromNode":"21deea9343be9e9c","fromSide":"bottom","toNode":"4c46e92b3c841608","toSide":"top"},
+		{"id":"6f1eb68fe85feec1","fromNode":"21deea9343be9e9c","fromSide":"left","toNode":"7b0eb6e8d14ca5ef","toSide":"right"},
+		{"id":"aa97eb41b96a04d2","fromNode":"21deea9343be9e9c","fromSide":"right","toNode":"ec8ac11f09bbfc53","toSide":"left"},
+		{"id":"a262d8fa7bffb44d","fromNode":"a6a53b9a7429df46","fromSide":"left","toNode":"e0e9f5b13e1a8e33","toSide":"right"},
+		{"id":"37ee22ec2b95a88a","fromNode":"e73c1e0af39b456d","fromSide":"left","toNode":"84de9bf7bf9ef0b4","toSide":"right"},
+		{"id":"65c3a32c9de1d6f6","fromNode":"d25afa26cc1d22bf","fromSide":"left","toNode":"a6a53b9a7429df46","toSide":"right"},
+		{"id":"44a0fc1b53eca13d","fromNode":"1ba9f9c9bff20c84","fromSide":"bottom","toNode":"1a9e4cc54d36a4f7","toSide":"top"}
+	]
+} 

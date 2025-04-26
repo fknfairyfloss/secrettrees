@@ -105,4 +105,84 @@ Key decisions should be reviewed quarterly to assess:
 ---
 
 > [!note]
-> This decision log should be maintained as a living document. All team members should contribute by adding new decisions and updating the status of existing ones. 
+> This decision log should be maintained as a living document. All team members should contribute by adding new decisions and updating the status of existing ones.
+
+# Decision Log
+
+This document tracks key decisions made during the Secret Trees project development process.
+
+## April 2025
+
+### April 25, 2025 - Telegram Bot Token Fix
+- **Decision**: Fixed Telegram bot token by correcting case sensitivity issue
+- **Context**: The bot was previously non-functional due to incorrect token format
+- **Alternatives Considered**: 
+  - Creating a new bot token
+  - Using a different messaging platform
+- **Decision Criteria**: Maintaining continuity with existing bot username and setup
+- **Impact**: Bot is now operational at @treekeeper_bot with all command functionality working
+- **Responsible**: Svetlana
+- **Status**: Implemented
+
+### April 24, 2025 - n8n Workflow Naming Convention
+- **Decision**: Standardized n8n workflow naming to reflect functionality
+- **Context**: Original workflow names were generic and non-descriptive
+- **Alternatives Considered**: 
+  - Keeping original names with documentation
+  - Using numeric designations
+- **Decision Criteria**: Clearer organization and self-documenting system
+- **Impact**: Improved workflow management and reduced onboarding time for new team members
+- **Responsible**: Alex
+- **Status**: Pending implementation
+
+### April 23, 2025 - Documentation Platform Selection
+- **Decision**: Selected Obsidian as the primary documentation platform
+- **Context**: Needed a flexible, markdown-based system for project documentation
+- **Alternatives Considered**: 
+  - Notion
+  - Confluence
+  - GitBook
+- **Decision Criteria**: Obsidian's offline-first approach, powerful linking capabilities, and plugin ecosystem
+- **Impact**: Created centralized knowledge management system with bidirectional linking
+- **Responsible**: Team consensus
+- **Status**: Implemented
+
+### April 22, 2025 - Integration Architecture
+- **Decision**: Adopted webhook-based integration between system components
+- **Context**: Needed to establish communication between n8n, Telegram bot, and documentation
+- **Alternatives Considered**: 
+  - Message queue system
+  - Direct API integrations
+  - Database-driven synchronization
+- **Decision Criteria**: Simplicity, maintainability, and low operational overhead
+- **Impact**: Created standardized approach for all system integrations
+- **Responsible**: Alex & Janis
+- **Status**: Partially implemented
+
+## March 2025
+
+### March 30, 2025 - Carbon Methodology Approach
+- **Decision**: Adopted Verified Carbon Standard (VCS) methodology for hemp cultivation
+- **Context**: Needed standardized approach for calculating carbon sequestration
+- **Alternatives Considered**: 
+  - Gold Standard
+  - Climate Action Reserve
+  - Custom methodology
+- **Decision Criteria**: VCS has best recognition for agricultural projects in EU region
+- **Impact**: Defined calculation approach for all carbon metrics in the project
+- **Responsible**: Martins
+- **Status**: Implemented
+
+### March 15, 2025 - Tokenization Platform Selection
+- **Decision**: Selected Polygon for carbon credit tokenization
+- **Context**: Needed blockchain platform for token issuance
+- **Alternatives Considered**: 
+  - Ethereum
+  - Solana
+  - Cardano
+- **Decision Criteria**: Lower fees, faster transactions, and strong ecosystem support
+- **Impact**: Defined technical development approach for tokenization platform
+- **Responsible**: Kristaps
+- **Status**: Design phase
+
+---

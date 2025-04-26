@@ -17,6 +17,7 @@ This document maintains a prioritized list of all pending tasks for the Secret T
 - [ ] Create health check monitoring for all services
 - [ ] Add authentication to webhook endpoints
 - [ ] Develop error alerting system for workflow failures
+- [ ] Implement email digest integration with Obsidian
 
 ### Data Management
 - [ ] Connect Carbon Tracker workflow to actual data sources
@@ -24,6 +25,7 @@ This document maintains a prioritized list of all pending tasks for the Secret T
 - [ ] Implement data validation for all user inputs
 - [ ] Develop data visualization dashboard for carbon metrics
 - [ ] Establish data retention and archiving policy
+- [ ] Set up filtering rules for email classification
 
 ### User Experience
 - [ ] Add detailed help commands to Telegram bot
@@ -32,6 +34,7 @@ This document maintains a prioritized list of all pending tasks for the Secret T
 - [ ] Add multi-language support for bot responses
 - [ ] Implement contextual help based on user history
 - [ ] Create onboarding flow for new community members
+- [ ] Create mind maps for project visualization in Obsidian
 
 ## Medium Priority Tasks
 
@@ -40,18 +43,21 @@ This document maintains a prioritized list of all pending tasks for the Secret T
 - [ ] Add caching layer for frequently accessed data
 - [ ] Optimize database queries for improved performance
 - [ ] Set up test environment separate from production
+- [ ] Install and configure additional Obsidian plugins for email analysis
 
 ### Analytics & Reporting
 - [ ] Develop weekly project status report automation
 - [ ] Create user engagement analytics dashboard
 - [ ] Implement A/B testing framework for bot responses
 - [ ] Set up anomaly detection for usage patterns
+- [ ] Create automated action item extraction from emails
 
 ### Content Development
 - [ ] Create educational content series about carbon credits
 - [ ] Develop interactive tour of Secret Trees facilities
 - [ ] Create templated responses for common questions
 - [ ] Build knowledge base of forest restoration techniques
+- [ ] Develop dashboards for visualizing email trends
 
 ## Low Priority Tasks
 
@@ -60,18 +66,21 @@ This document maintains a prioritized list of all pending tasks for the Secret T
 - [ ] Research blockchain integration for carbon token tracking
 - [ ] Investigate machine learning for forest growth prediction
 - [ ] Consider AR/VR experiences for virtual forest tours
+- [ ] Explore mobile app development for project monitoring
 
 ### Documentation
 - [ ] Create comprehensive API documentation
 - [ ] Develop technical architecture diagrams
 - [ ] Write contributor guidelines for open source components
 - [ ] Document disaster recovery procedures
+- [ ] Document email classification schema and tagging system
 
 ### Community Building
 - [ ] Design community contribution program
 - [ ] Create ambassador program for environmental advocates
 - [ ] Develop educational workshops for schools
 - [ ] Plan virtual events for community engagement
+- [ ] Set up community newsletter using email integration
 
 ## Completed Tasks
 
@@ -81,6 +90,17 @@ This document maintains a prioritized list of all pending tasks for the Secret T
 - [x] Implement security system for sensitive information
 - [x] Create workflow dashboard in Obsidian
 - [x] Establish project management framework
+
+### Integration & Automation
+- ✅ **[P0]** Fix Telegram bot token issue - (Case sensitivity in API token)
+- ✅ **[P0]** Deploy n8n server on localhost
+- ✅ **[P0]** Create basic workflow automation system
+- ✅ **[P0]** Set up initial Obsidian integration
+
+### Documentation
+- ✅ **[P0]** Create workflow mapping document
+- ✅ **[P0]** Document n8n integration process
+- ✅ **[P0]** Set up documentation vault structure
 
 ## Task Management Process
 
@@ -104,3 +124,69 @@ This document maintains a prioritized list of all pending tasks for the Secret T
 
 > [!note]
 > This backlog is a living document and should be updated regularly as the project evolves. All team members are encouraged to add tasks and suggest priority changes. 
+
+## Pending Tasks
+
+### This Week (High Priority)
+
+#### Workflow Enhancements (P0)
+- [ ] Rename all n8n workflows following naming convention
+- [ ] Update webhook paths to match new workflow names
+- [ ] Connect Telegram bot to n8n workflow for expanded capabilities
+- [ ] Add input validation to all workflows
+
+#### Testing & Validation (P0)
+- [ ] Create comprehensive test suite for all workflows
+- [ ] Test webhook endpoints with various payloads
+- [ ] Verify Telegram bot responses for all commands
+- [ ] Test error handling in workflows
+
+#### Documentation Updates (P0)
+- [ ] Link workflow map to main project documentation
+- [ ] Update Telegram bot documentation with command list
+- [ ] Document API endpoints for external integration
+
+### Next Week (Medium Priority)
+
+#### Integration Expansion (P1)
+- [ ] Integrate carbon tracking data with documentation system
+- [ ] Set up periodic reporting of project metrics
+- [ ] Create dashboard for monitoring workflow executions
+- [ ] Add logging integration between Telegram bot and n8n
+
+#### User Experience (P1)
+- [ ] Improve Telegram bot response variety
+- [ ] Add natural language processing capabilities
+- [ ] Create user guides for non-technical team members
+- [ ] Set up automated monitoring for Telegram bot uptime
+
+### Future Tasks (Low Priority)
+
+#### Advanced Features (P2)
+- [ ] Implement AI-powered analytics for carbon data
+- [ ] Develop interactive visualization of project metrics
+- [ ] Create multi-language support for Telegram bot
+- [ ] Integrate with mobile app notifications
+
+#### Security & Compliance (P2)
+- [ ] Conduct security audit of all automation workflows
+- [ ] Set up encryption for sensitive data transmission
+- [ ] Implement role-based access control
+- [ ] Create comprehensive backup system for all data
+
+## Notes & Decisions
+
+- **2025-04-25**: Fixed Telegram bot token issue, bot now operational at @treekeeper_bot
+- **2025-04-24**: Decided to use n8n for all workflow automation
+- **2025-04-23**: Selected Obsidian as documentation platform for better knowledge management
+- **2025-04-22**: Determined webhook-based integration as preferred approach for system components
+
+## Task Assignment
+
+| Task Area | Assigned To | Status |
+|-----------|-------------|--------|
+| n8n Workflows | Alex | In Progress |
+| Telegram Bot | Svetlana | Complete |
+| Documentation | Janis | In Progress |
+| Testing | Martins | Pending |
+| Security | Kristaps | Pending | 
