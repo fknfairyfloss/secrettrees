@@ -22,9 +22,11 @@ This repository contains all core documentation for the Secret Trees regenerativ
 - [[n8n-workflow-dashboard|Workflow Dashboard]] - Status of automation systems
 - [[tasks-backlog|Task Backlog]] - Prioritized pending work
 - [[decision-log|Decision Log]] - Record of key project decisions
+- [[GitHub-Integration-Guide|GitHub Integration Guide]] - Documentation for GitHub automation
 
 ## Quick Access
 - 🔄 **Current Status**: Check the [[n8n-workflow-dashboard|Workflow Dashboard]] 
 - 📝 **Next Tasks**: View the [[tasks-backlog|Task Backlog]]
 - 📊 **Planning**: Use the [[weekly-planning-template|Weekly Planning Template]]
-- 📚 **Framework**: Review our [[project-management|Project Management Framework]] 
+- 📚 **Framework**: Review our [[project-management|Project Management Framework]]
+- 📂 **GitHub**: See [[GitHub-Integration-Guide|GitHub Integration Guide]] 

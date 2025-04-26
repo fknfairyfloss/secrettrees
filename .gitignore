@@ -2,3 +2,29 @@
 .trash/
 .DS_Store
 /.obsidian/
+
+# Node.js
+node_modules/
+npm-debug.log
+yarn-debug.log
+yarn-error.log
+
+# Environment variables and config
+.env
+.env.local
+.env.development
+.env.test
+.env.production
+config/bot-config.js
+
+# Logs and runtime data
+logs/
+*.log
+pids/
+*.pid
+*.seed
+*.pid.lock
+
+# Generated content
+analytics/
+test-debug.log

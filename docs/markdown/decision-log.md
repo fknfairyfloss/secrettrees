@@ -113,6 +113,18 @@ This document tracks key decisions made during the Secret Trees project developm
 
 ## April 2025
 
+### April 26, 2025 - Security Approach for Token Management
+- **Decision**: Implemented configuration file approach for sensitive token storage
+- **Context**: GitGuardian detected exposed Telegram bot token in repository
+- **Alternatives Considered**: 
+  - Environment variables only
+  - Encrypted storage with key management
+  - Vault service integration
+- **Decision Criteria**: Balance between security and ease of development
+- **Impact**: Improved security posture while maintaining workflow functionality
+- **Responsible**: Security Team
+- **Status**: Implemented
+
 ### April 25, 2025 - Telegram Bot Token Fix
 - **Decision**: Fixed Telegram bot token by correcting case sensitivity issue
 - **Context**: The bot was previously non-functional due to incorrect token format
