@@ -1,7 +1,7 @@
 # Secret Trees n8n Integration - Progress Report
 
 ## Current Status
-**Date:** April 26, 2025
+**Date:** May 1, 2025
 
 ### 1. Completed Tasks
 
@@ -11,11 +11,11 @@
 - ✅ All necessary workflows are active and functional
 
 #### Workflows Created
-- ✅ **Secret Trees Echo Assistant** (renamed from "My workflow 3")
-- ✅ **Carbon Data Tracker** (renamed from "My workflow 2")
-- ✅ **AI Knowledge Base Assistant** (renamed from "Demo: My first AI Agent in n8n")
-- ✅ **Obsidian Integration** (renamed from "My workflow")
-- ✅ All workflows successfully renamed as of April 26, 2025
+- ✅ **Secret Trees Echo Assistant** (ID: bEzczYvRDSz9Pc9O) - renamed and activated
+- ✅ **Carbon Data Tracker** (ID: sI98Bmo8ccsKcJro) - renamed and activated
+- ✅ **AI Knowledge Base Assistant** (ID: MIN6Xnfoc3nkihM8) - renamed and activated
+- ✅ **Obsidian Integration** (ID: 79ekrxuSE78LSGKF) - renamed and activated
+- ✅ All workflows successfully renamed and active as of May 1, 2025
 
 #### Telegram Bot Integration
 - ✅ Fixed Telegram bot token issue - bot is now running successfully

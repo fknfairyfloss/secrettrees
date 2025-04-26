@@ -82,6 +82,10 @@ Changes to documentation are tracked through a structured system:
 
 ## Usage Examples
 
+> **Note:** The webhook endpoints need to be configured in the n8n UI for each workflow. 
+> The paths below represent the recommended URL paths but may need to be set up or verified in the n8n interface.
+> To configure webhooks: Open each workflow in n8n and check the webhook node settings.
+
 ### Update Carbon Data
 ```bash
 curl -X POST "http://localhost:5678/webhook/carbon-data-tracker" \
@@ -91,14 +95,32 @@ curl -X POST "http://localhost:5678/webhook/carbon-data-tracker" \
 
 ### Query Knowledge Base
 ```bash
-curl -X POST "http://localhost:5678/webhook/knowledge-assistant" \
+curl -X POST "http://localhost:5678/webhook/ai-knowledge-base-assistant" \
   -H "Content-Type: application/json" \
   -d '{"query": "How does carbon tokenization work?"}'
 ```
 
+### Echo Assistant Query
+```bash
+curl -X POST "http://localhost:5678/webhook/secret-trees-echo-assistant" \
+  -H "Content-Type: application/json" \
+  -d '{"query": "Tell me about Secret Trees"}'
+```
+
 ### Update Obsidian Documentation
 ```bash
-curl -X POST "http://localhost:5678/webhook/obsidian-update" \
+curl -X POST "http://localhost:5678/webhook/obsidian-integration" \
   -H "Content-Type: application/json" \
   -d '{"file": "Milestone-Dashboard.md", "operation": "append", "content": "## New Milestone\n- Completed forest survey"}'
-``` 
+```
+
+## Workflow IDs for Reference
+
+| Workflow Name | ID | 
+|--------------|-----------------|
+| Secret Trees Echo Assistant | bEzczYvRDSz9Pc9O |
+| Carbon Data Tracker | sI98Bmo8ccsKcJro |
+| AI Knowledge Base Assistant | MIN6Xnfoc3nkihM8 |
+| Obsidian Integration | 79ekrxuSE78LSGKF |
+
+_Updated: May 1, 2025_ 

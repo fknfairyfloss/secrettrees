@@ -34,6 +34,7 @@ This document serves as a central navigation point for all project management re
 - [[Secret-Trees-Workflow-Map|Workflow Automation Map]] - Overview of n8n workflows
 - [[Update-n8n-Workflows|Workflow Update Guide]] - Guide to updating workflow names
 - [[n8n-Progress-Report|n8n Integration Progress]] - Current status of n8n integration
+- [[n8n-Webhook-Configuration|Webhook Configuration Guide]] - How to configure n8n webhooks
 - [[Canvas-Maps/Email-Mind-Map|Email Integration Map]] - Visual map of email processing system
 
 ## Team Resources

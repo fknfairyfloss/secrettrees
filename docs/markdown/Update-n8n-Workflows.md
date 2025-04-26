@@ -1,4 +1,15 @@
-# Updating n8n Workflow Names
+# Updating n8n Workflow Names - COMPLETED
+
+✅ All workflows have been successfully renamed and activated as of May 1, 2025.
+
+## Current Workflow Status
+
+| Original Name | Current Name | Workflow ID | Status |
+|--------------|-----------------|-----------|--------|
+| My workflow 3 | Secret Trees Echo Assistant | bEzczYvRDSz9Pc9O | ✅ Active |
+| My workflow 2 | Carbon Data Tracker | sI98Bmo8ccsKcJro | ✅ Active |
+| Demo: My first AI Agent in n8n | AI Knowledge Base Assistant | MIN6Xnfoc3nkihM8 | ✅ Active |
+| My workflow | Obsidian Integration | 79ekrxuSE78LSGKF | ✅ Active |
 
 To better reflect their functionality, please rename the n8n workflows using these steps:
 
