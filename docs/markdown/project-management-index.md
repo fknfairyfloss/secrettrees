@@ -36,6 +36,9 @@ This document serves as a central navigation point for all project management re
 - [[n8n-Progress-Report|n8n Integration Progress]] - Current status of n8n integration
 - [[n8n-Webhook-Configuration|Webhook Configuration Guide]] - How to configure n8n webhooks
 - [[Canvas-Maps/Email-Mind-Map|Email Integration Map]] - Visual map of email processing system
+- [[../secret-trees-n8n-workflows/OPENAI-TELEGRAM-INTEGRATION|OpenAI Telegram Integration]] - Guide to the OpenAI-powered Telegram bot
+- [[../secret-trees-n8n-workflows/OBSIDIAN-TELEGRAM-INTEGRATION|Obsidian Knowledge Search]] - How to search the knowledge base via Telegram
+- [[../secret-trees-n8n-workflows/TELEGRAM-BOT-FIX|Telegram Bot Fixes]] - Recent fixes to the Telegram bot integration
 
 ## Team Resources
 
@@ -54,12 +57,13 @@ This document serves as a central navigation point for all project management re
 
 ## Quick Actions
 
-- 🔄 **Update Task Status**: Edit [[tasks-backlog|Task Backlog]]
+- 🔄 **Update Task Status**: Use `./scripts/task` or view [[Task-Tracking-Guide|Task Tracking Guide]]
 - 📊 **Check Workflow Status**: View [[n8n-workflow-dashboard|Workflow Dashboard]]
 - 📝 **Log Decision**: Add to [[decision-log|Decision Log]]
 - 📆 **Plan Week**: Use [[weekly-planning-template|Weekly Planning Template]]
 - 📧 **View Email Digests**: Check Daily Notes for email-digest files
 - 🗺️ **Visualize Project**: Open [[Canvas-Maps/Email-Mind-Map|Email Integration Map]]
+- 🔍 **Search Knowledge**: Use `/knowledge [query]` in Telegram bot
 
 ---
 

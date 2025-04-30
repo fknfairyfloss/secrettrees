@@ -21,9 +21,9 @@ Secret Trees is an innovative eco-tourism and carbon tokenization project in Lat
 ## Featured Property: Secret Trees Gardens
 
 Our project is based at a 14-hectare property in Latvia divided across three development zones:
-- **Zone 1**: Main cottage development and visitor center (3500m2)
-- **Zone 2**: Sustainable agriculture demonstration area (0.9hahectares)
-- **Zone 3**: Forest conservation and biodiversity zone (14.7 hectares)
+- **Zone 1**: Main cottage development and visitor center (5.3 hectares)
+- **Zone 2**: Sustainable agriculture demonstration area (4.2 hectares)
+- **Zone 3**: Forest conservation and biodiversity zone (4.5 hectares)
 
 This property will showcase our full sustainability model - from hemp cultivation to carbon-sequestering construction, immersive eco-tourism experiences, and biodiversity conservation.
 
@@ -31,7 +31,7 @@ This property will showcase our full sustainability model - from hemp cultivatio
 
 **Current Phase: Foundation & Enhancement (April 2025)**
 
-We are currently in the Enhancement phase of our project development:
+We have completed the Foundation phase and are currently in the Enhancement phase of our project development:
 
 - ✅ **Phase 1: Foundation** - Core infrastructure setup, initial team formation, and concept validation
 - 🔄 **Phase 2: Enhancement** - Building automation systems, refining carbon methodology, and developing tokenization strategy

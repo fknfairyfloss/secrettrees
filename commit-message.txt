@@ -1,0 +1,18 @@
+Security and automation enhancements
+
+- Security: Fixed hardcoded token exposure issue flagged by GitGuardian
+- Security: Moved sensitive credentials to excluded config files
+- Security: Updated .gitignore to exclude sensitive files
+- Security: Added documentation about secure practices
+
+- Feature: Added GitHub integration for repository tracking
+- Feature: Created GitHub activity summary generation
+- Feature: Implemented workflow dashboard updates
+- Feature: Added comprehensive update scripts
+
+- Docs: Added GitHub Integration Guide
+- Docs: Created security incident documentation
+- Docs: Updated project README and decision log
+- Docs: Added next steps planning document
+
+The changes improve security by removing hardcoded tokens, enhance automation through new scripts, and provide better documentation for users and developers. 

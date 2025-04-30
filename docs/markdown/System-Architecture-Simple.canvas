@@ -1,0 +1,23 @@
+{
+	"nodes":[
+		{"id":"e6294c31d962a12b","type":"group","x":-880,"y":-640,"width":2120,"height":1280,"label":"Secret Trees - System Overview"},
+		{"id":"49f1fee2da10a58c","type":"text","text":"# Active Workflows\n\n1. AI Knowledge Base Assistant (ID: MIN6Xnfoc3nkihM8)\n2. Secret Trees Echo Assistant (ID: bEzczYvRDSz9Pc9O)\n3. Carbon Data Tracker (ID: sI98Bmo8ccsKcJro)\n4. Obsidian Integration (ID: 79ekrxuSE78LSGKF)\n\n**Next Priority:** Create automated daily summaries of bot interactions","x":-260,"y":340,"width":800,"height":260,"color":"4"},
+		{"id":"3d8c0d61ec3f0ee7","type":"text","text":"# 📚 Obsidian Vault\n\nKnowledge repository\nand documentation","x":800,"y":-420,"width":320,"height":180,"color":"2"},
+		{"id":"c9dc50f64cebb02f","type":"text","text":"# 🔍 System Architecture Overview\n\nThis simplified diagram shows how the core components of the Secret Trees project connect and interact.","x":-200,"y":-600,"width":680,"height":120,"color":"1"},
+		{"id":"63c44845fec0fa16","type":"text","text":"# 📱 Telegram Bot\n## @treekeeper_bot\n\nUser-facing interface for\nqueries and commands","x":-580,"y":-420,"width":320,"height":180,"color":"4"},
+		{"id":"c6ce8bed051ff1c2","type":"text","text":"# 🔄 GitHub\n\nVersion control\nand code repository","x":80,"y":-420,"width":350,"height":180,"color":"6"},
+		{"id":"f96e4fe8fcf90b01","type":"text","text":"# ⚙️ n8n Server\n## localhost:5678\n\nWorkflow automation hub\n4 active workflows","x":40,"y":50,"width":350,"height":230,"color":"3"},
+		{"id":"d19d4a953ba7b79c","type":"text","text":"# 👨‍💻 Developers\n\nConfigure workflows\nand maintain system","x":800,"y":50,"width":360,"height":230,"color":"1"},
+		{"id":"b7a387c8fdcac20f","type":"text","text":"# 👤 Users\n\nPublic, Team & Admin\naccess levels","x":-800,"y":50,"width":340,"height":230,"color":"5"}
+	],
+	"edges":[
+		{"id":"7ddc9ad78c02cb4a","fromNode":"63c44845fec0fa16","fromSide":"right","toNode":"f96e4fe8fcf90b01","toSide":"left","label":"Forwards requests"},
+		{"id":"d24be41f42f75f59","fromNode":"f96e4fe8fcf90b01","fromSide":"right","toNode":"3d8c0d61ec3f0ee7","toSide":"bottom","label":"Reads/writes docs"},
+		{"id":"c95fbb1c3ce0214a","fromNode":"f96e4fe8fcf90b01","fromSide":"left","toNode":"63c44845fec0fa16","toSide":"bottom","label":"Sends responses"},
+		{"id":"c27df99b56649f4a","fromNode":"c6ce8bed051ff1c2","fromSide":"bottom","toNode":"f96e4fe8fcf90b01","toSide":"top","label":"Provides code"},
+		{"id":"d1dd71b66c2bc752","fromNode":"b7a387c8fdcac20f","fromSide":"right","toNode":"63c44845fec0fa16","toSide":"left","label":"Sends queries"},
+		{"id":"4dc4b02dc3752c8e","fromNode":"d19d4a953ba7b79c","fromSide":"left","toNode":"f96e4fe8fcf90b01","toSide":"right","label":"Configure"},
+		{"id":"bd26d83c95cb4b36","fromNode":"d19d4a953ba7b79c","fromSide":"top","toNode":"3d8c0d61ec3f0ee7","toSide":"right","label":"Document"},
+		{"id":"adb1c4c2a5848c8d","fromNode":"d19d4a953ba7b79c","fromSide":"top","toNode":"c6ce8bed051ff1c2","toSide":"right","label":"Update code"}
+	]
+}

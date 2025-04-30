@@ -1,0 +1,87 @@
+{
+  "summary": {
+    "total": 11,
+    "passed": 0,
+    "failed": 11,
+    "skipped": 0
+  },
+  "tests": [
+    {
+      "id": "AUTH-01",
+      "description": "Public endpoints should be accessible without authentication",
+      "status": "failed",
+      "error": "connect ECONNREFUSED ::1:5678",
+      "timestamp": "2025-04-26T15:25:38.764Z"
+    },
+    {
+      "id": "AUTH-02",
+      "description": "Team endpoints should reject requests without authentication",
+      "status": "failed",
+      "error": "connect ECONNREFUSED ::1:5678",
+      "timestamp": "2025-04-26T15:25:38.773Z"
+    },
+    {
+      "id": "AUTH-03",
+      "description": "Team endpoints should accept requests with valid authentication",
+      "status": "failed",
+      "error": "connect ECONNREFUSED ::1:5678",
+      "timestamp": "2025-04-26T15:25:38.776Z"
+    },
+    {
+      "id": "AUTH-04",
+      "description": "Admin endpoints should reject requests without authentication",
+      "status": "failed",
+      "error": "connect ECONNREFUSED ::1:5678",
+      "timestamp": "2025-04-26T15:25:38.779Z"
+    },
+    {
+      "id": "AUTH-05",
+      "description": "Admin endpoints should accept requests with valid admin authentication",
+      "status": "failed",
+      "error": "connect ECONNREFUSED ::1:5678",
+      "timestamp": "2025-04-26T15:25:38.783Z"
+    },
+    {
+      "id": "INPUT-01",
+      "description": "Endpoints should reject requests with missing required parameters",
+      "status": "failed",
+      "error": "connect ECONNREFUSED ::1:5678",
+      "timestamp": "2025-04-26T15:25:38.793Z"
+    },
+    {
+      "id": "INPUT-02",
+      "description": "Endpoints should reject requests with incorrect data types",
+      "status": "failed",
+      "error": "connect ECONNREFUSED ::1:5678",
+      "timestamp": "2025-04-26T15:25:38.797Z"
+    },
+    {
+      "id": "INPUT-03",
+      "description": "Endpoints should safely handle SQL injection attempts",
+      "status": "failed",
+      "error": "connect ECONNREFUSED ::1:5678",
+      "timestamp": "2025-04-26T15:25:38.800Z"
+    },
+    {
+      "id": "INPUT-04",
+      "description": "Endpoints should safely handle command injection attempts",
+      "status": "failed",
+      "error": "connect ECONNREFUSED ::1:5678",
+      "timestamp": "2025-04-26T15:25:38.809Z"
+    },
+    {
+      "id": "DATA-01",
+      "description": "Public endpoints should not return sensitive team data",
+      "status": "failed",
+      "error": "connect ECONNREFUSED ::1:5678",
+      "timestamp": "2025-04-26T15:25:38.815Z"
+    },
+    {
+      "id": "DATA-02",
+      "description": "Schedule command should filter private data for public users",
+      "status": "failed",
+      "error": "connect ECONNREFUSED ::1:5678",
+      "timestamp": "2025-04-26T15:25:38.818Z"
+    }
+  ]
+}

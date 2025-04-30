@@ -1,0 +1,110 @@
+#!/bin/bash
+
+# Simple wrapper script for update-task-status.js to make it easier to update task statuses
+
+# Get the directory where this script is located
+SCRIPT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
+
+# Display help if requested
+if [[ "$1" == "-h" || "$1" == "--help" || "$#" -eq 0 ]]; then
+  echo "Secret Trees Task Management"
+  echo "Usage:"
+  echo "  task todo \"Task description\" \"Comment\"   - Mark task as todo"
+  echo "  task start \"Task description\" \"Comment\"  - Mark task as in-progress"
+  echo "  task done \"Task description\" \"Comment\"   - Mark task as completed"
+  echo "  task block \"Task description\" \"Comment\"  - Mark task as blocked"
+  echo "  task log                                    - View recent task updates"
+  echo "  task status                                 - View tasks by status"
+  echo ""
+  echo "Examples:"
+  echo "  task start \"Implement workflow automation\" \"Working on this now\""
+  echo "  task done \"Fix Telegram bot token issue\" \"Case sensitivity was the problem\""
+  exit 0
+fi
+
+# Command switcher
+case "$1" in
+  todo)
+    if [ "$#" -lt 2 ]; then
+      echo "Error: Missing task description."
+      echo "Usage: task todo \"Task description\" \"Optional comment\""
+      exit 1
+    fi
+    node "$SCRIPT_DIR/update-task-status.js" "$2" "todo" "${3:-}"
+    ;;
+  start)
+    if [ "$#" -lt 2 ]; then
+      echo "Error: Missing task description."
+      echo "Usage: task start \"Task description\" \"Optional comment\""
+      exit 1
+    fi
+    node "$SCRIPT_DIR/update-task-status.js" "$2" "in-progress" "${3:-}"
+    ;;
+  done)
+    if [ "$#" -lt 2 ]; then
+      echo "Error: Missing task description."
+      echo "Usage: task done \"Task description\" \"Optional comment\""
+      exit 1
+    fi
+    node "$SCRIPT_DIR/update-task-status.js" "$2" "done" "${3:-}"
+    ;;
+  block)
+    if [ "$#" -lt 2 ]; then
+      echo "Error: Missing task description."
+      echo "Usage: task block \"Task description\" \"Optional comment\""
+      exit 1
+    fi
+    node "$SCRIPT_DIR/update-task-status.js" "$2" "blocked" "${3:-}"
+    ;;
+  log)
+    # View recent task updates from the log file
+    if [ -f "$SCRIPT_DIR/../docs/markdown/obsidian-integration-log.md" ]; then
+      grep "TASK STATUS" "$SCRIPT_DIR/../docs/markdown/obsidian-integration-log.md" | tail -n 10
+    else
+      echo "Log file not found."
+    fi
+    ;;
+  status)
+    # View tasks by status
+    TASKS_FILE="$SCRIPT_DIR/../docs/markdown/tasks-backlog.md"
+    
+    echo "Tasks by Status:"
+    echo "----------------"
+    
+    echo "In Progress:"
+    cat "$TASKS_FILE" | while IFS= read -r line; do
+      if [[ "$line" == *"- [⏳]"* ]]; then
+        echo "  ${line#*- [⏳] }"
+      fi
+    done
+    echo ""
+    
+    echo "Blocked:"
+    cat "$TASKS_FILE" | while IFS= read -r line; do
+      if [[ "$line" == *"- [❌]"* ]]; then
+        echo "  ${line#*- [❌] }"
+      fi
+    done
+    echo ""
+    
+    echo "Recently Completed:"
+    cat "$TASKS_FILE" | while IFS= read -r line; do
+      if [[ "$line" == *"- [✅]"* ]]; then
+        echo "  ${line#*- [✅] }"
+      fi
+    done | head -n 5
+    echo ""
+    
+    echo "To Do (Next 5):"
+    cat "$TASKS_FILE" | while IFS= read -r line; do
+      if [[ "$line" == *"- [ ]"* ]]; then
+        echo "  ${line#*- [ ] }"
+      fi
+    done | head -n 5
+    ;;
+  *)
+    echo "Unknown command: $1"
+    echo "Use 'task --help' for usage information."
+    exit 1
+    ;;
+esac 

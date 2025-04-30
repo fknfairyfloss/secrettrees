@@ -1,0 +1,94 @@
+{
+  "period": {
+    "start": "2025-04-25T07:15:32.000Z",
+    "end": "2025-04-25T07:17:45.000Z",
+    "days": 1
+  },
+  "summary": {
+    "totalInteractions": 1,
+    "uniqueUsers": [
+      "User124"
+    ],
+    "activeDays": [
+      "2025-04-25"
+    ],
+    "averageDailyInteractions": 1,
+    "peakActivity": {
+      "date": "2025-04-25",
+      "count": 1
+    }
+  },
+  "engagement": {
+    "dailyInteractions": {
+      "2025-04-25": 1
+    },
+    "hourlyDistribution": [
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      1,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+    ],
+    "dayOfWeekPattern": [
+      0,
+      0,
+      0,
+      0,
+      0,
+      1,
+      0
+    ]
+  },
+  "commands": {
+    "usage": {
+      "start": 1
+    },
+    "featureCategories": {
+      "core": 0,
+      "support": 0,
+      "search": 0
+    }
+  },
+  "users": {
+    "topUsers": {
+      "User124": 1
+    },
+    "retention": {
+      "newUsers": 1,
+      "returningUsers": 0,
+      "dailyActiveUsers": {
+        "2025-04-25": 1
+      },
+      "weeklyActiveUsers": {
+        "2025-W16": 1
+      }
+    }
+  },
+  "performance": {
+    "responseTimes": [],
+    "reliability": {
+      "successCount": 0,
+      "errorCount": 0,
+      "errorTypes": {}
+    }
+  }
+}

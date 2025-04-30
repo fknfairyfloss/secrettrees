@@ -1,0 +1,380 @@
+{
+  "name": "Secret Trees Email Digest with Time Management",
+  "nodes": [
+    {
+      "parameters": {
+        "rule": {
+          "interval": [
+            {
+              "field": "hours",
+              "minutesInterval": "1"
+            }
+          ]
+        }
+      },
+      "name": "Schedule Trigger",
+      "type": "n8n-nodes-base.scheduleTrigger",
+      "typeVersion": 1,
+      "position": [
+        250,
+        300
+      ]
+    },
+    {
+      "parameters": {
+        "functionCode": "// Configuration\nconst imapConfig = {\n  host: '{{$node[\"Credentials\"].json[\"imapHost\"]}}',\n  port: {{$node[\"Credentials\"].json[\"imapPort\"]}},\n  user: '{{$node[\"Credentials\"].json[\"email\"]}}',\n  password: '{{$node[\"Credentials\"].json[\"password\"]}}',\n  tls: true\n};\n\n// Filter settings\nconst filters = {\n  projectKeywords: ['Secret Trees', 'Carbon', 'Tokenization', 'Eco-tourism', 'Hempcrete', 'Latvia'],\n  propertyKeywords: ['Property', 'Garden', 'Construction', 'Land', 'Real Estate'],\n  familyKeywords: ['Family', 'Personal', 'Health', 'Travel'],\n  timeManagementKeywords: ['Schedule', 'Meeting', 'Appointment', 'Deadline', 'Calendar', 'Event', 'Due date']\n};\n\n// Function to classify email by content\nfunction classifyEmail(email) {\n  const subject = email.subject?.toLowerCase() || '';\n  const body = email.html?.toLowerCase() || email.text?.toLowerCase() || '';\n  \n  // Check project-related\n  if (filters.projectKeywords.some(keyword => \n      subject.includes(keyword.toLowerCase()) || \n      body.includes(keyword.toLowerCase()))) {\n    return 'project';\n  }\n  \n  // Check property-related\n  if (filters.propertyKeywords.some(keyword => \n      subject.includes(keyword.toLowerCase()) || \n      body.includes(keyword.toLowerCase()))) {\n    return 'property';\n  }\n  \n  // Check family-related\n  if (filters.familyKeywords.some(keyword => \n      subject.includes(keyword.toLowerCase()) || \n      body.includes(keyword.toLowerCase()))) {\n    return 'family';\n  }\n  \n  // Check time management\n  if (filters.timeManagementKeywords.some(keyword => \n      subject.includes(keyword.toLowerCase()) || \n      body.includes(keyword.toLowerCase()))) {\n    return 'timeManagement';\n  }\n  \n  // Default classification\n  return 'other';\n}\n\n// Implement the fetch emails function\nasync function fetchAndClassifyEmails() {\n  const Imap = require('imap');\n  const {simpleParser} = require('mailparser');\n  \n  return new Promise((resolve, reject) => {\n    try {\n      const imap = new Imap(imapConfig);\n      \n      const emails = {\n        project: [],\n        property: [],\n        family: [],\n        timeManagement: [],\n        other: []\n      };\n      \n      function openInbox(cb) {\n        imap.openBox('INBOX', true, cb);\n      }\n      \n      imap.once('ready', function() {\n        openInbox(function(err, box) {\n          if (err) throw err;\n          \n          // Get emails from the last 24 hours\n          const yesterday = new Date();\n          yesterday.setDate(yesterday.getDate() - 1);\n          \n          imap.search(['UNSEEN', ['SINCE', yesterday]], function(err, results) {\n            if (err) throw err;\n            \n            if (!results || !results.length) {\n              console.log('No new emails');\n              imap.end();\n              return resolve(emails);\n            }\n            \n            const f = imap.fetch(results, {bodies: '', markSeen: false});\n            \n            f.on('message', function(msg, seqno) {\n              const email = {};\n              \n              msg.on('body', function(stream, info) {\n                let buffer = '';\n                stream.on('data', function(chunk) {\n                  buffer += chunk.toString('utf8');\n                });\n                \n                stream.on('end', function() {\n                  simpleParser(buffer, (err, parsed) => {\n                    if (err) {\n                      console.error('Parser error:', err);\n                    } else {\n                      email.from = parsed.from?.text;\n                      email.subject = parsed.subject;\n                      email.date = parsed.date;\n                      email.text = parsed.text;\n                      email.html = parsed.html;\n                      email.id = parsed.messageId;\n                      \n                      // Mark the source account\n                      email.account = '{{$node[\"Credentials\"].json[\"accountName\"]}}';\n                    }\n                  });\n                });\n              });\n              \n              msg.once('end', function() {\n                const category = classifyEmail(email);\n                email.category = category;\n                emails[category].push(email);\n                \n                // If this email has time management content, add to that category too\n                if (category !== 'timeManagement' && \n                   filters.timeManagementKeywords.some(keyword => \n                     (email.subject?.toLowerCase() || '').includes(keyword.toLowerCase()) || \n                     (email.text?.toLowerCase() || '').includes(keyword.toLowerCase()))) {\n                  emails.timeManagement.push(email);\n                }\n              });\n            });\n            \n            f.once('error', function(err) {\n              console.error('Fetch error:', err);\n              reject(err);\n            });\n            \n            f.once('end', function() {\n              console.log('Done fetching messages');\n              imap.end();\n            });\n          });\n        });\n      });\n      \n      imap.once('error', function(err) {\n        console.error('IMAP error:', err);\n        reject(err);\n      });\n      \n      imap.once('end', function() {\n        console.log('IMAP connection ended');\n        resolve(emails);\n      });\n      \n      imap.connect();\n    } catch (error) {\n      console.error('Error in email processing:', error);\n      reject(error);\n    }\n  });\n}\n\n// Summarize email content\nfunction summarizeEmail(text, maxLength = 250) {\n  if (!text) return 'No content available';\n  \n  // Simple summary: just truncate\n  if (text.length <= maxLength) return text;\n  \n  return text.substring(0, maxLength) + '...';\n}\n\n// Extract time-sensitive information\nfunction extractTimeInfo(email) {\n  const timeInfo = {\n    dates: [],\n    times: [],\n    keywords: []\n  };\n  \n  // Simple extraction of obvious time markers\n  const text = email.text || email.html || '';\n  \n  // Extract dates (simple approach)\n  const dateMatches = text.match(/\\d{1,2}[\\/\\-\\.]\\d{1,2}[\\/\\-\\.]\\d{2,4}/g) || [];\n  timeInfo.dates = dateMatches;\n  \n  // Extract times\n  const timeMatches = text.match(/\\d{1,2}:\\d{2}(?:\\s*)?(am|pm)?/gi) || [];\n  timeInfo.times = timeMatches;\n  \n  // Look for time-related keywords\n  filters.timeManagementKeywords.forEach(keyword => {\n    if (text.toLowerCase().includes(keyword.toLowerCase())) {\n      timeInfo.keywords.push(keyword);\n    }\n  });\n  \n  return timeInfo;\n}\n\n// Format emails for template\nfunction formatEmailsForTemplate(emails) {\n  const result = {\n    projectEmails: [],\n    propertyEmails: [],\n    familyEmails: [],\n    timeManagementEmails: [],\n    actionItems: [],\n    insights: ''\n  };\n  \n  // Process project emails\n  if (emails.project && emails.project.length) {\n    result.projectEmails = emails.project.map(email => ({\n      subject: email.subject || 'No Subject',\n      from: email.from || 'Unknown Sender',\n      date: email.date ? new Date(email.date).toLocaleString() : 'Unknown Date',\n      category: email.category,\n      summary: summarizeEmail(email.text || email.html),\n      emailId: email.id || '#',\n      account: email.account\n    }));\n    \n    // Extract potential action items\n    emails.project.forEach(email => {\n      const text = email.text || '';\n      const lines = text.split('\\n');\n      \n      lines.forEach(line => {\n        if (/todo|action item|deadline|required|urgent/i.test(line)) {\n          result.actionItems.push(line.trim());\n        }\n      });\n    });\n  }\n  \n  // Process property emails\n  if (emails.property && emails.property.length) {\n    result.propertyEmails = emails.property.map(email => ({\n      subject: email.subject || 'No Subject',\n      from: email.from || 'Unknown Sender',\n      date: email.date ? new Date(email.date).toLocaleString() : 'Unknown Date',\n      summary: summarizeEmail(email.text || email.html),\n      account: email.account\n    }));\n  }\n  \n  // Process family emails\n  if (emails.family && emails.family.length) {\n    result.familyEmails = emails.family.map(email => ({\n      subject: email.subject || 'No Subject',\n      from: email.from || 'Unknown Sender',\n      date: email.date ? new Date(email.date).toLocaleString() : 'Unknown Date',\n      summary: summarizeEmail(email.text || email.html),\n      account: email.account\n    }));\n  }\n  \n  // Process time management emails\n  if (emails.timeManagement && emails.timeManagement.length) {\n    result.timeManagementEmails = emails.timeManagement.map(email => {\n      const timeInfo = extractTimeInfo(email);\n      return {\n        subject: email.subject || 'No Subject',\n        from: email.from || 'Unknown Sender',\n        date: email.date ? new Date(email.date).toLocaleString() : 'Unknown Date',\n        summary: summarizeEmail(email.text || email.html),\n        dates: timeInfo.dates,\n        times: timeInfo.times,\n        keywords: timeInfo.keywords,\n        account: email.account\n      };\n    });\n  }\n  \n  // Generate simple insights\n  const totalEmails = emails.project.length + emails.property.length + emails.family.length + emails.timeManagement.length + emails.other.length;\n  result.insights = `Today's digest contains ${totalEmails} new emails: ${emails.project.length} project-related, ${emails.property.length} property-related, ${emails.family.length} family-related, and ${emails.timeManagement.length} time-sensitive.`;\n  \n  return result;\n}\n\n// Main execution\nasync function main() {\n  try {\n    // Fetch and classify emails\n    const emails = await fetchAndClassifyEmails();\n    \n    // Format emails for template\n    const templateData = formatEmailsForTemplate(emails);\n    \n    // Return the formatted data\n    return templateData;\n  } catch (error) {\n    console.error('Error in email digest workflow:', error);\n    return { error: error.message };\n  }\n}\n\n// Execute the main function\nreturn main();"
+      },
+      "name": "Process Emails",
+      "type": "n8n-nodes-base.function",
+      "typeVersion": 1,
+      "position": [
+        650,
+        300
+      ]
+    },
+    {
+      "parameters": {
+        "jsCode": "// Prepare data for creating the email digest\nconst today = new Date().toISOString().split('T')[0];\nconst emailData = $input.json;\n\n// Generate HTML content with Handlebars-like template\nfunction generateHtml(data) {\n  // Simple template rendering function\n  function render(template, context) {\n    // Handle if/else blocks\n    template = template.replace(/{{#if ([^}]+)}}/g, (match, condition) => {\n      const value = condition.split('.').reduce((obj, prop) => obj?.[prop], context);\n      return value && value.length ? '' : '<!-- if-removed -->';\n    });\n    \n    template = template.replace(/{{else}}/g, () => {\n      return '<!-- else -->';\n    });\n    \n    template = template.replace(/{{\\/#if}}/g, () => {\n      return '<!-- endif -->';\n    });\n    \n    // Process each blocks\n    template = template.replace(/{{#each ([^}]+)}}/g, (match, arrayName) => {\n      const array = arrayName.split('.').reduce((obj, prop) => obj?.[prop], context);\n      if (!array || !array.length) return '';\n      \n      // Find the end of this each block\n      const startPos = template.indexOf(match);\n      const endPos = template.indexOf('{{/each}}', startPos);\n      \n      if (endPos === -1) return '';\n      \n      const blockContent = template.substring(startPos + match.length, endPos);\n      let result = '';\n      \n      array.forEach(item => {\n        let itemContent = blockContent;\n        // Replace variables in the block\n        itemContent = itemContent.replace(/{{([^}]+)}}/g, (m, varName) => {\n          return item[varName] || '';\n        });\n        result += itemContent;\n      });\n      \n      return result;\n    });\n    \n    // Clean up each closing tags\n    template = template.replace(/{{\\/#each}}/g, '');\n    \n    // Replace regular variables\n    template = template.replace(/{{([^}]+)}}/g, (match, varName) => {\n      if (varName.startsWith('date:')) {\n        const format = varName.substring(5);\n        return today; // Format date as needed\n      }\n      return varName.split('.').reduce((obj, prop) => obj?.[prop] ?? '', context);\n    });\n    \n    // Clean up removed if blocks\n    let cleanTemplate = '';\n    let skipSection = false;\n    const lines = template.split('\\n');\n    \n    for (let i = 0; i < lines.length; i++) {\n      const line = lines[i];\n      \n      if (line.includes('<!-- if-removed -->')) {\n        skipSection = true;\n        continue;\n      }\n      \n      if (skipSection && line.includes('<!-- else -->')) {\n        skipSection = false;\n        continue;\n      }\n      \n      if (line.includes('<!-- endif -->')) {\n        skipSection = false;\n        continue;\n      }\n      \n      if (!skipSection && !line.includes('<!-- else -->') && !line.includes('<!-- endif -->')) {\n        cleanTemplate += line + '\\n';\n      }\n    }\n    \n    return cleanTemplate;\n  }\n  \n  // Template content (would be fetched from a file in production)\n  const template = `---\nsecurity: team\ntags: [email-digest, automation, time-management]\ndate: {{date:YYYY-MM-DD}}\n---\n\n# Email Digest: {{date:YYYY-MM-DD}}\n\n## Time Management\n{{#if timeManagementEmails}}\n### Time-Sensitive Items\n{{#each timeManagementEmails}}\n#### {{subject}}\n**From:** {{from}}\n**Date:** {{date}}\n**Time Markers:** {{#if dates}}{{dates}}{{/if}}{{#if times}} at {{times}}{{/if}}\n\n{{summary}}\n\n---\n{{/each}}\n{{else}}\n*No time-sensitive items in this period*\n{{/if}}\n\n## Secret Trees Project Updates\n{{#if projectEmails}}\n{{#each projectEmails}}\n### {{subject}}\n**From:** {{from}}\n**Date:** {{date}}\n**Category:** {{category}}\n\n{{summary}}\n\n---\n{{/each}}\n{{else}}\n*No project updates in this period*\n{{/if}}\n\n## Property Management\n{{#if propertyEmails}}\n{{#each propertyEmails}}\n### {{subject}}\n**From:** {{from}}\n**Date:** {{date}}\n\n{{summary}}\n\n---\n{{/each}}\n{{else}}\n*No property management emails in this period*\n{{/if}}\n\n## Family & Personal\n{{#if familyEmails}}\n{{#each familyEmails}}\n### {{subject}}\n**From:** {{from}}\n**Date:** {{date}}\n\n{{summary}}\n\n---\n{{/each}}\n{{else}}\n*No family emails in this period*\n{{/if}}\n\n## Action Items\n{{#if actionItems}}\n{{#each actionItems}}\n- [ ] {{this}}\n{{/each}}\n{{else}}\n*No action items identified*\n{{/if}}\n\n## Insights\n{{#if insights}}\n{{insights}}\n{{else}}\n*No insights for this period*\n{{/if}}`;\n  \n  return render(template, data);\n}\n\n// Generate the digest content\nconst digestContent = generateHtml(emailData);\nconst filename = `email-digest-${today}.md`;\n\nreturn {\n  file: filename,\n  content: digestContent,\n  operation: 'create'\n};"
+      },
+      "name": "Format Digest",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 1,
+      "position": [
+        850,
+        300
+      ]
+    },
+    {
+      "parameters": {
+        "url": "=http://localhost:5678/webhook/obsidian-update",
+        "options": {}
+      },
+      "name": "Create in Obsidian",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 3,
+      "position": [
+        1050,
+        300
+      ]
+    },
+    {
+      "parameters": {
+        "botToken": "={{ $json.botToken }}",
+        "chatId": "={{ $json.chatId }}",
+        "text": "=📧 Email Digest Created\n\nI've just created a new email digest in your Obsidian vault titled \"{{ $node[\"Format Digest\"].json[\"file\"] }}\".\n\nThe digest contains:\n- Time Management Items: {{ $node[\"Process Emails\"].json[\"timeManagementEmails\"].length || 0 }}\n- Project Emails: {{ $node[\"Process Emails\"].json[\"projectEmails\"].length || 0 }}\n- Property Emails: {{ $node[\"Process Emails\"].json[\"propertyEmails\"].length || 0 }}\n- Family Emails: {{ $node[\"Process Emails\"].json[\"familyEmails\"].length || 0 }}\n- Action Items: {{ $node[\"Process Emails\"].json[\"actionItems\"].length || 0 }}\n\nView it in your Obsidian vault under Daily Notes."
+      },
+      "name": "Telegram Notification",
+      "type": "n8n-nodes-base.telegram",
+      "typeVersion": 1,
+      "position": [
+        1250,
+        300
+      ]
+    },
+    {
+      "parameters": {
+        "dataType": "string",
+        "value1": "={{ $node[\"Create in Obsidian\"].json[\"result\"][\"success\"] }}",
+        "rules": {
+          "rules": [
+            {
+              "value2": true,
+              "type": "boolean"
+            }
+          ]
+        }
+      },
+      "name": "Success Check",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 1,
+      "position": [
+        1250,
+        100
+      ]
+    },
+    {
+      "parameters": {
+        "keepOnlySet": true,
+        "values": {
+          "string": [
+            {
+              "name": "imapHost",
+              "value": "imap.gmail.com"
+            },
+            {
+              "name": "imapPort",
+              "value": "993"
+            },
+            {
+              "name": "email",
+              "value": "your-project-email@gmail.com"
+            },
+            {
+              "name": "password",
+              "value": "your-app-password"
+            },
+            {
+              "name": "accountName",
+              "value": "Project"
+            },
+            {
+              "name": "botToken",
+              "value": "{{ $json.telegram.botToken }}"
+            },
+            {
+              "name": "chatId",
+              "value": "{{ $json.telegram.groupChatId }}"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "name": "ProjectAccount",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 2,
+      "position": [
+        450,
+        200
+      ]
+    },
+    {
+      "parameters": {
+        "keepOnlySet": true,
+        "values": {
+          "string": [
+            {
+              "name": "imapHost",
+              "value": "imap.protonmail.com"
+            },
+            {
+              "name": "imapPort",
+              "value": "993"
+            },
+            {
+              "name": "email",
+              "value": "your-personal-email@protonmail.com"
+            },
+            {
+              "name": "password",
+              "value": "your-mail-password"
+            },
+            {
+              "name": "accountName",
+              "value": "Personal"
+            },
+            {
+              "name": "botToken",
+              "value": "{{ $json.telegram.botToken }}"
+            },
+            {
+              "name": "chatId",
+              "value": "{{ $json.telegram.groupChatId }}"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "name": "PersonalAccount",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 2,
+      "position": [
+        450,
+        300
+      ]
+    },
+    {
+      "parameters": {
+        "keepOnlySet": true,
+        "values": {
+          "string": [
+            {
+              "name": "imapHost",
+              "value": "imap.gmail.com"
+            },
+            {
+              "name": "imapPort",
+              "value": "993"
+            },
+            {
+              "name": "email",
+              "value": "ilze-email@gmail.com"
+            },
+            {
+              "name": "password",
+              "value": "ilze-app-password"
+            },
+            {
+              "name": "accountName",
+              "value": "Ilze"
+            },
+            {
+              "name": "botToken",
+              "value": "{{ $json.telegram.botToken }}"
+            },
+            {
+              "name": "chatId",
+              "value": "{{ $json.telegram.groupChatId }}"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "name": "IlzeAccount",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 2,
+      "position": [
+        450,
+        400
+      ]
+    },
+    {
+      "parameters": {
+        "values": {
+          "number": [
+            {
+              "name": "email_accounts",
+              "value": 3
+            }
+          ],
+          "object": [
+            {
+              "name": "project_email_result",
+              "value": "={{ $('ProjectAccount').item.json }}"
+            },
+            {
+              "name": "personal_email_result",
+              "value": "={{ $('PersonalAccount').item.json }}"
+            },
+            {
+              "name": "ilze_email_result",
+              "value": "={{ $('IlzeAccount').item.json }}"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "name": "Merge Results",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 2,
+      "position": [
+        1050,
+        100
+      ]
+    }
+  ],
+  "connections": {
+    "Schedule Trigger": {
+      "main": [
+        [
+          {
+            "node": "ProjectAccount",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "PersonalAccount",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "IlzeAccount",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Process Emails": {
+      "main": [
+        [
+          {
+            "node": "Format Digest",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Format Digest": {
+      "main": [
+        [
+          {
+            "node": "Create in Obsidian",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Create in Obsidian": {
+      "main": [
+        [
+          {
+            "node": "Success Check",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Success Check": {
+      "main": [
+        [
+          {
+            "node": "Telegram Notification",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "ProjectAccount": {
+      "main": [
+        [
+          {
+            "node": "Process Emails",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Merge Results",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "PersonalAccount": {
+      "main": [
+        [
+          {
+            "node": "Process Emails",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Merge Results",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "IlzeAccount": {
+      "main": [
+        [
+          {
+            "node": "Process Emails",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Merge Results",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  }
+} 

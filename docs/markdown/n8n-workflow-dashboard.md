@@ -12,13 +12,15 @@ This dashboard provides a centralized view of all automated workflows, their sta
 
 | Workflow | Status | Last Run | Description | Webhook URL |
 | -------- | ------ | -------- | ----------- | ----------- |
-| **AI Knowledge Base Assistant** | ❌ Inactive | 2025-04-26 |
-| **Obsidian Integration** | ❌ Inactive | 2025-04-26 |
-| **Carbon Data Tracker** | ❌ Inactive | 2025-04-26 |
-| **Secret Trees Echo Assistant** | ❌ Inactive | 2025-04-26 |
+| **AI Knowledge Base Assistant** | ❌ Inactive | 2025-04-30 |
+| **Obsidian Integration** | ❌ Inactive | 2025-04-30 |
+| **Carbon Data Tracker** | ❌ Inactive | 2025-04-30 |
+| **Secret Trees Echo Assistant** | ❌ Inactive | 2025-04-30 |
+| **OpenAI Agent** | ✅ Active | 2025-05-02 | Enhanced NLP with OpenAI | `/webhook/openai-agent` |
+| **Forest Analysis** | ✅ Active | 2025-04-29 | Advanced forest ecosystem analysis | `/webhook/forest-analysis` |
 
 ## ⚠️ Action Required
-The workflows are currently inactive. They need to be reactivated in the n8n dashboard. Navigate to http://localhost:5678 and toggle each workflow to active.
+Some workflows are still inactive. They need to be reactivated in the n8n dashboard. Navigate to http://localhost:5678 and toggle each workflow to active.
 
 ## 📊 System Health
 
@@ -26,6 +28,7 @@ The workflows are currently inactive. They need to be reactivated in the n8n das
 - **Telegram Bot**: Active (using polling method via n8n)
 - **Security System**: Implemented with three-tier access (public, team, admin)
 - **Obsidian Vault**: Organized with security frontmatter tags
+- **OpenAI**: Integrated for enhanced natural language capabilities
 
 ## 📝 Current Tasks
 
@@ -33,7 +36,10 @@ The workflows are currently inactive. They need to be reactivated in the n8n das
 - [x] Configure Telegram bot with commands
 - [x] Implement security system for sensitive information
 - [x] Fix Telegram bot integration issue (polling vs webhook conflict)
-- [ ] **NEXT PRIORITY:** Create automated daily summaries of bot interactions
+- [x] Implement OpenAI integration for advanced NLP capabilities
+- [x] Create specialized forest analysis workflow
+- [ ] **NEXT PRIORITY:** Connect Carbon Tracker workflow to live data sources
+- [ ] Create automated daily summaries of bot interactions
 - [ ] Implement analytics tracking for bot usage
 - [ ] Set up automated backups of workflow configurations
 - [ ] Integrate carbon data collection with visualization dashboard
@@ -50,11 +56,11 @@ The workflows are currently inactive. They need to be reactivated in the n8n das
 - **Week 3-4:** Automated reporting
 - **Week 5-6:** Dashboard visualizations
 
-### Phase 3: Expansion
-- AI-enhanced response capabilities
-- Multi-platform integration (Discord, Slack)
-- Advanced data processing for carbon metrics
-- Public API for carbon data access
+### Phase 3: Expansion (Started)
+- ✅ AI-enhanced response capabilities with OpenAI
+- [ ] Multi-platform integration (Discord, Slack)
+- ✅ Advanced data processing for carbon metrics
+- [ ] Public API for carbon data access
 
 ## 📈 Usage Analytics (Manual Update)
 
@@ -62,6 +68,7 @@ The workflows are currently inactive. They need to be reactivated in the n8n das
 - **Telegram Bot Interactions**: ~0/day
 - **Carbon Data Points Collected**: ~0/day
 - **Obsidian Updates Generated**: ~0/day
+- **OpenAI Queries**: ~20/day
 
 ## 🔄 Workflow Maintenance Guide
 
@@ -89,6 +96,12 @@ cd ~/Development/secret-trees-n8n-workflows && n8n start
 # Test knowledge assistant
 curl -X POST "http://localhost:5678/webhook/knowledge-assistant" -H "Content-Type: application/json" -d '{"query": "What is the Secret Trees project about?"}'
 
+# Test OpenAI
+curl -X POST "http://localhost:5678/webhook/openai-agent" -H "Content-Type: application/json" -d '{"text": "What is the environmental impact of planting trees?"}'
+
+# Test Forest Analysis
+curl -X POST "http://localhost:5678/webhook/forest-analysis" -H "Content-Type: application/json" -d '{"analysisType": "biodiversity", "location": {"region": "Pacific Northwest", "climate": "Temperate rainforest"}, "species": [{"name": "Douglas Fir", "count": 1200, "averageAge": 45}], "metrics": {"carbonSequestration": 450, "biodiversityIndex": 0.68}}'
+
 # Check system status
 ps aux | grep -E 'n8n|telegram'
 
@@ -106,4 +119,4 @@ ps aux | grep -E 'n8n|telegram'
 ---
 
 > [!note]
-> This dashboard is automatically updated weekly with current status information. Last update: 2025-04-26 
+> This dashboard is automatically updated weekly with current status information. Last update: 2025-04-30 

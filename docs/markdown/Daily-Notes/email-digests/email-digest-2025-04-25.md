@@ -22,18 +22,6 @@ Following our discussion last week, we would like to formalize our partnership f
 
 ---
 
-## Property
-
-### Plantation Land Survey Completed
-**From:** surveys@latviagrow.lv
-**Date:** 4/25/2025, 6:41:21 PM
-**Category:** Property
-**Privacy:** Team
-
-The land survey of the eastern plantation has been completed. Total area: 47.8 hectares. Soil quality analysis shows excellent suitability for hemp cultivation with pH levels between 6.2-6.8.
-
----
-
 ## Personal
 
 ### Your flight booking confirmation

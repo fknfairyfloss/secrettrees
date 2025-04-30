@@ -1,146 +1,85 @@
-# Secret Trees Gardens
+# Secret Trees Telegram Bot
 
-This repository contains the development files for the Secret Trees Gardens project, an eco-tourism initiative with hempcrete construction and carbon credit tokenization based in Latvia.
+A Telegram bot for Secret Trees, a fictional organization focused on reforestation projects and carbon credits.
 
-## n8n Task Management Integration with Cursor
+## Features
 
-This section describes the configuration and scripts required to integrate n8n workflow automation with Cursor's AI assistant through the Model Context Protocol (MCP).
+- 🌲 Information about reforestation projects worldwide
+- 💨 Carbon credit purchasing and offsetting
+- 🗺️ Location-based forest analysis
+- ❓ FAQ system with AI-powered responses
+- 🤖 Natural language conversation powered by Google's Gemini API
 
-### Overview
+## Project Structure
 
-This integration allows you to:
+```
+Secret_Trees/
+├── commands/           # Command handlers for the bot
+├── config/             # Configuration files
+├── services/           # Service modules (AI, etc.)
+├── utils/              # Utility functions
+├── data/               # Data storage (generated at runtime)
+├── logs/               # Log files (generated at runtime)
+├── bot.js              # Main bot file
+├── package.json        # Project dependencies
+└── .env                # Environment variables (create from .env.example)
+```
 
-1. Create tasks directly from Cursor's AI assistant
-2. Update existing tasks
-3. Generate daily notes
-4. Generate weekly reports
+## Prerequisites
 
-All these actions will trigger workflows in n8n that create or update markdown files in appropriate directories.
+- Node.js 18 or higher
+- A Telegram Bot Token (from BotFather)
+- Google Gemini API Key
 
-### Components
+## Installation
 
-The integration consists of the following components:
-
-1. **n8n Server**: Handles the workflow automation (running on port 5678)
-2. **Custom MCP Bridge**: A Node.js server that implements the MCP protocol and forwards requests to n8n (running on port 5679)
-3. **Cursor Configuration**: Configuration in Cursor to connect to the MCP server
-
-### Setup
-
-#### Prerequisites
-
-- Node.js 18 or later
-- n8n installed
-- Cursor IDE
-
-#### Steps to Install
-
-1. **Configure n8n**:
-   ```bash
-   # Start n8n in the background with tunnel access
-   npx n8n start --tunnel
+1. Clone the repository:
+   ```
+   git clone https://github.com/your-username/secret-trees-bot.git
+   cd secret-trees-bot
    ```
 
-2. **Setup MCP Bridge**:
-   ```bash
-   # Run the custom MCP bridge server
-   node cursor-n8n-bridge.js
+2. Install dependencies:
+   ```
+   npm install
    ```
 
-3. **Restart Cursor** to load the MCP configuration from `.cursor/mcp.json`.
+3. Create a `.env` file based on `.env.example`:
+   ```
+   cp .env.example .env
+   ```
 
-### Usage
+4. Edit the `.env` file with your API keys:
+   ```
+   TELEGRAM_BOT_TOKEN=your_telegram_bot_token
+   GEMINI_API_KEY=your_gemini_api_key
+   ```
 
-Once the integration is set up, you can interact with it through Cursor's AI assistant with natural language commands:
+## Running the Bot
 
-#### Creating Tasks
-
-Ask the AI assistant to create a task:
-
+Start the bot in development mode:
 ```
-Create a task called "Implement login feature" with high priority
-```
-
-This will:
-1. Send a request to the MCP server
-2. Forward the request to n8n
-3. Create a markdown file in the `tasks` directory
-
-#### Updating Tasks
-
-Ask the AI assistant to update a task:
-
-```
-Update the "Implement login feature" task to "in progress" status
+npm run dev
 ```
 
-#### Generating Daily Notes
-
-Ask the AI assistant to generate daily notes:
-
+Or in production:
 ```
-Generate daily notes for today with a summary of what I've accomplished
+npm start
 ```
 
-This will create a markdown file in the `Daily-Notes` directory.
+## Available Commands
 
-#### Generating Weekly Reports
+- `/start` - Introduction to the bot
+- `/forest` - Information about reforestation projects
+- `/carbon` - Carbon credit information and calculator
+- `/faq` - Frequently asked questions
+- `/about` - About Secret Trees
+- `/help` - Help with using the bot
 
-Ask the AI assistant to generate a weekly report:
+## Development
 
-```
-Generate a weekly report including the features implemented this week
-```
+To add new commands, create a new file in the `commands/` directory. The filename should be the command name (without the slash).
 
-This will create a markdown file in the `Weekly-Reports` directory.
+## License
 
-### Troubleshooting
-
-#### Checking Component Status
-
-You can check if all components are running properly:
-
-```bash
-# Check if n8n is running
-ps aux | grep n8n | grep -v grep
-
-# Check if the MCP bridge is running
-ps aux | grep cursor-n8n-bridge | grep -v grep
-
-# Test the MCP server directly
-curl http://localhost:5679/mcp
-```
-
-#### Restarting Components
-
-If any component is not working, you can restart it:
-
-```bash
-# Restart n8n
-npx n8n start --tunnel
-
-# Restart the MCP bridge
-node cursor-n8n-bridge.js
-```
-
-### Architecture
-
-```
-┌─────────┐      ┌───────────────┐      ┌──────────┐
-│ Cursor  │─────▶│ MCP Bridge    │─────▶│ n8n      │
-│         │◀─────│ (Port 5679)   │◀─────│ (Port 5678) │
-└─────────┘      └───────────────┘      └──────────┘
-                                            │
-                                            ▼
-                                        ┌──────────┐
-                                        │ Markdown │
-                                        │ Files    │
-                                        └──────────┘
-```
-
-### Files
-
-- `cursor-n8n-bridge.js`: The custom MCP bridge server
-- `.cursor/mcp.json`: Cursor configuration for MCP
-- `setup-integration.sh`: Script to set up the integration
-- `run-mcp-server.sh`: Script to run the n8n-mcp-server (alternative approach)
+MIT

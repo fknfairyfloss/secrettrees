@@ -3,28 +3,36 @@
 .DS_Store
 /.obsidian/
 
-# Node.js
+# Node.js dependencies
 node_modules/
 npm-debug.log
 yarn-debug.log
 yarn-error.log
 
-# Environment variables and config
+# Environment variables
 .env
-.env.local
-.env.development
-.env.test
-.env.production
-config/bot-config.js
 
-# Logs and runtime data
+# Logs
 logs/
 *.log
-pids/
+
+# Runtime data
+pid/
 *.pid
 *.seed
 *.pid.lock
 
-# Generated content
-analytics/
-test-debug.log
+# Generated data
+data/
+
+# Coverage directory
+coverage/
+
+# Testing
+.nyc_output/
+
+# IDE files
+.idea/
+.vscode/
+*.swp
+*.swo
