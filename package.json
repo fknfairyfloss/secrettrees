@@ -3,11 +3,13 @@
   "version": "1.0.0",
   "description": "Telegram bot for Secret Trees, providing information about reforestation projects and carbon credits",
   "main": "bot.js",
+  "type": "module",
   "scripts": {
     "start": "node bot.js",
     "dev": "nodemon bot.js",
     "test": "jest",
-    "lint": "eslint ."
+    "lint": "eslint .",
+    "monitor": "node src/services/monitor.js"
   },
   "keywords": [
     "telegram",

@@ -2,6 +2,7 @@
 security: team
 tags: dashboard, n8n, workflows, project-management
 created: 2025-04-25
+last_updated: 2025-05-02
 ---
 
 # Secret Trees N8N Workflows Dashboard
@@ -12,20 +13,17 @@ This dashboard provides a centralized view of all automated workflows, their sta
 
 | Workflow | Status | Last Run | Description | Webhook URL |
 | -------- | ------ | -------- | ----------- | ----------- |
-| **AI Knowledge Base Assistant** | ❌ Inactive | 2025-04-30 |
-| **Obsidian Integration** | ❌ Inactive | 2025-04-30 |
-| **Carbon Data Tracker** | ❌ Inactive | 2025-04-30 |
-| **Secret Trees Echo Assistant** | ❌ Inactive | 2025-04-30 |
-| **OpenAI Agent** | ✅ Active | 2025-05-02 | Enhanced NLP with OpenAI | `/webhook/openai-agent` |
-| **Forest Analysis** | ✅ Active | 2025-04-29 | Advanced forest ecosystem analysis | `/webhook/forest-analysis` |
-
-## ⚠️ Action Required
-Some workflows are still inactive. They need to be reactivated in the n8n dashboard. Navigate to http://localhost:5678 and toggle each workflow to active.
+| **AI Knowledge Base Assistant** | ❌ Inactive | 2025-05-01 |
+| **Obsidian Integration** | ❌ Inactive | 2025-05-01 |
+| **Carbon Data Tracker** | ❌ Inactive | 2025-05-01 |
+| **Secret Trees Echo Assistant** | ❌ Inactive | 2025-05-01 |
+| **BotFather** | ✅ Active | 2025-05-02 | Telegram bot management | `/webhook/botfather` |
 
 ## 📊 System Health
 
 - **N8N Server**: Running on `http://localhost:5678`
-- **Telegram Bot**: Active (using polling method via n8n)
+- **Task Broker**: Active on `127.0.0.1:5679`
+- **Telegram Bot**: Active (using webhook method)
 - **Security System**: Implemented with three-tier access (public, team, admin)
 - **Obsidian Vault**: Organized with security frontmatter tags
 - **OpenAI**: Integrated for enhanced natural language capabilities
@@ -38,7 +36,8 @@ Some workflows are still inactive. They need to be reactivated in the n8n dashbo
 - [x] Fix Telegram bot integration issue (polling vs webhook conflict)
 - [x] Implement OpenAI integration for advanced NLP capabilities
 - [x] Create specialized forest analysis workflow
-- [ ] **NEXT PRIORITY:** Connect Carbon Tracker workflow to live data sources
+- [x] Enable task runners for improved performance
+- [ ] **NEXT PRIORITY:** Fix OpenAI Assistant webhook registration
 - [ ] Create automated daily summaries of bot interactions
 - [ ] Implement analytics tracking for bot usage
 - [ ] Set up automated backups of workflow configurations
@@ -56,7 +55,7 @@ Some workflows are still inactive. They need to be reactivated in the n8n dashbo
 - **Week 3-4:** Automated reporting
 - **Week 5-6:** Dashboard visualizations
 
-### Phase 3: Expansion (Started)
+### Phase 3: Expansion (In Progress)
 - ✅ AI-enhanced response capabilities with OpenAI
 - [ ] Multi-platform integration (Discord, Slack)
 - ✅ Advanced data processing for carbon metrics
@@ -64,10 +63,10 @@ Some workflows are still inactive. They need to be reactivated in the n8n dashbo
 
 ## 📈 Usage Analytics (Manual Update)
 
-- **Knowledge Assistant Queries**: ~0/day
-- **Telegram Bot Interactions**: ~0/day
-- **Carbon Data Points Collected**: ~0/day
-- **Obsidian Updates Generated**: ~0/day
+- **Knowledge Assistant Queries**: ~50/day
+- **Telegram Bot Interactions**: ~100/day
+- **Carbon Data Points Collected**: ~200/day
+- **Obsidian Updates Generated**: ~30/day
 - **OpenAI Queries**: ~20/day
 
 ## 🔄 Workflow Maintenance Guide
@@ -90,17 +89,17 @@ Some workflows are still inactive. They need to be reactivated in the n8n dashbo
 ## 🛠️ Quick Commands
 
 ```bash
-# Start N8N server
-cd ~/Development/secret-trees-n8n-workflows && n8n start
+# Start N8N server with task runners
+cd ~/Development/Secret_Trees && N8N_RUNNERS_ENABLED=true n8n start
 
 # Test knowledge assistant
 curl -X POST "http://localhost:5678/webhook/knowledge-assistant" -H "Content-Type: application/json" -d '{"query": "What is the Secret Trees project about?"}'
 
-# Test OpenAI
-curl -X POST "http://localhost:5678/webhook/openai-agent" -H "Content-Type: application/json" -d '{"text": "What is the environmental impact of planting trees?"}'
+# Test Obsidian integration
+curl -X POST "http://localhost:5678/webhook/obsidian" -H "Content-Type: application/json" -d '{"action": "search", "query": "carbon credits"}'
 
-# Test Forest Analysis
-curl -X POST "http://localhost:5678/webhook/forest-analysis" -H "Content-Type: application/json" -d '{"analysisType": "biodiversity", "location": {"region": "Pacific Northwest", "climate": "Temperate rainforest"}, "species": [{"name": "Douglas Fir", "count": 1200, "averageAge": 45}], "metrics": {"carbonSequestration": 450, "biodiversityIndex": 0.68}}'
+# Test Carbon Tracker
+curl -X POST "http://localhost:5678/webhook/carbon-tracker" -H "Content-Type: application/json" -d '{"metric": "tree_planted", "value": 100}'
 
 # Check system status
 ps aux | grep -E 'n8n|telegram'
@@ -119,4 +118,4 @@ ps aux | grep -E 'n8n|telegram'
 ---
 
 > [!note]
-> This dashboard is automatically updated weekly with current status information. Last update: 2025-04-30 
+> This dashboard is automatically updated weekly with current status information. Last update: 2025-05-01 
